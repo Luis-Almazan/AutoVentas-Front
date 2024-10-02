@@ -1,0 +1,35 @@
+.menu-container {
+    background-color: #001f3f;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 300px; /* Máximo ancho del recuadro */
+    margin: auto; /* Centrar horizontalmente */
+}
+
+.menu-container h1 {
+    color: #ffdd00;
+    margin-bottom: 30px;
+}
+
+.menu-container .btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+.menu-container .btn:hover {
+    background-color: #ffdd00;
+    color: #001f3f;
+}
+
+.menu-container i {
+    margin-right: 10px;
+}
