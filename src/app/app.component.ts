@@ -1,5 +1,6 @@
-import { RouterModule, Routes } from '@angular/router';
-import { MenuComponent } from './menu/menu.component'; // MENU 
+import { Component } from '@angular/core';
+import { RouterOutlet,RouterLink } from '@angular/router';
+import { MenuComponent } from './menu/menu.component'; 
 // CLIENTES
 import { ActualizarClienteComponent } from './clientes/actualizar-cliente/actualizar-cliente.component';
 import { BajaClienteComponent } from './clientes/baja-cliente/baja-cliente.component';
@@ -31,27 +32,13 @@ import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.com
 // ***********************************************************************************************
 
 
-
-export const routes: Routes = [
-
-   { path: '', redirectTo: '/menu', pathMatch: 'full' },
-   { path: 'menu', component: MenuComponent }, 
-   { path: 'ActualizarCliente', component: ActualizarClienteComponent },
-   { path: 'BajaCliente', component: BajaClienteComponent },
-   { path: 'ContultaCliente', component: ConsultaClienteComponent },
-   { path: 'IngresoCliente', component: DatosClienteComponent },
-   { path: 'Bitacora', component: BitacoraComponent },
-   { path: 'IngresoEntrega', component: IngresoEntregaComponent },
-   { path: 'Seguimiento', component: SeguimientoEntregaComponent },
-   { path: 'AnulacionVentas', component: AnulacionVentasComponent },
-   { path: 'DevolicionProducto', component: DevolucionProductoComponent },
-   { path: 'ActualizarProducto', component: ActualizaProductoComponent },
-   { path: 'BajaProducto', component: BajaProductoComponent },
-   { path: 'ConsultaProducto', component: ConsultaProductoComponent },
-   { path: 'IngresoProducto', component: IngresarProductoComponent },
-   { path: 'MenuCliente', component: MenuClientesComponent },
-   { path: 'MenuNota', component: MenuNotacreditoComponent },
-   { path: 'MenuProducto', component: MenuProductosComponent },
-];
-
-export const routing = RouterModule.forRoot(routes);
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaClienteComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent,MenuClientesComponent,MenuNotacreditoComponent,MenuProductosComponent,ConsultaVentaComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'AutoVentas-Front';
+}
