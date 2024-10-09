@@ -1,51 +1,48 @@
-<div class="app-container">
-    <!-- Menú -->
-    <div class="menu-container">
-        <h1 routerLink="/menu">Auto Ventas</h1>
-        <div class="menu-item" (click)="toggleClientes()">
-            <i class="fas fa-users"></i> Clientes
-        </div>
-        <div *ngIf="clientesVisible" class="sub-menu">
-            <div class="sub-menu-item" routerLink="/IngresoCliente">Crear Cliente</div>
-            <div class="sub-menu-item" routerLink="/ConsultarCliente">Consultar</div>
-            <div class="sub-menu-item" routerLink="/ActualizarCliente">Actualizar</div>
-            <div class="sub-menu-item" routerLink="/BajaCliente">Dar de Baja</div>
-        </div>
-        <hr />
-        <div class="menu-item" (click)="toggleProductos()">
-            <i class="fas fa-box"></i> Productos
-        </div>
-        <div *ngIf="productosVisible" class="sub-menu">
-            <div class="sub-menu-item" routerLink="/IngresoProducto">Ingreso de Producto</div>
-            <div class="sub-menu-item" routerLink="/ConsultaProducto">Consultar</div>
-            <div class="sub-menu-item" routerLink="/ActualizarProducto">Actualización</div>
-            <div class="sub-menu-item" routerLink="/BajaProducto">Baja de Producto</div>
-        </div>
-        <hr />
-        <div class="menu-item" routerLink="/ConsultaVenta">
-            <i class="fas fa-shopping-cart"></i> Ventas
-        </div>
-        <div class="menu-item" (click)="toggleNotas()">
-            <i class="fas fa-file-invoice"></i> Notas de Crédito
-        </div>
-        <div *ngIf="notasVisible" class="sub-menu">
-            <div class="sub-menu-item" routerLink="/AnulacionVentas">Anulación de Ventas</div>
-            <div class="sub-menu-item" routerLink="/DevolucionProducto">Devolución de Producto</div>
-        </div>
-        <hr />
-        <div class="menu-item" (click)="togglePaquetes()">
-            <i class="fas fa-truck"></i> Entrega de Paquetes
-        </div>
-        <div *ngIf="paquetesVisible" class="sub-menu">
-            <div class="sub-menu-item" routerLink="/Bitacora">Bitácora</div>
-            <div class="sub-menu-item" routerLink="/IngresoEntrega">Ingreso de Entrega</div>
-            <div class="sub-menu-item" routerLink="/SeguimientoEntrega">Seguimiento de Entrega</div>
-        </div>
-        <hr />
+<div class="menu-container">
+    <h1 routerLink="/menu" >Auto Ventas</h1>
+    <div class="menu-item" (click)="toggleClientes()">
+        <i class="fas fa-users"></i> Clientes
     </div>
+    <div *ngIf="clientesVisible" class="sub-menu">
+        <div class="sub-menu-item" routerLink="/IngresoCliente">Crear Cliente</div>
+        <div class="sub-menu-item" routerLink="/ConsultarCliente">Consultar</div>
+        <div class="sub-menu-item" routerLink="/ActualizarCliente">Actualizar</div>
+        <div class="sub-menu-item" routerLink="/BajaCliente">Dar de Baja</div>
+    </div>
+    <hr />
+    <div class="menu-item" (click)="toggleProductos()">
+        <i class="fas fa-box"></i> Productos
+    </div>
+    <div *ngIf="productosVisible" class="sub-menu">
+        <div class="sub-menu-item" routerLink="/IngresoProducto">Ingreso de Producto</div>
+        <div class="sub-menu-item" routerLink="/ConsultaProducto">Consultar</div>
+        <div class="sub-menu-item" routerLink="/ActualizarProducto">Actualización</div>
+        <div class="sub-menu-item" routerLink="/BajaProducto">Baja de Producto</div>
+    </div>
+    <hr />
 
-    <!-- Contenedor de la imagen al lado del menú -->
-    <div class="image-container">
-        <img src="../Autoventas.jpg" alt="Imagen de fondo" class="background-image">
+    <div class="menu-item" routerLink="/ConsultaVenta"><i class="fas fa-shopping-cart"></i> Ventas</div>
+
+    <!-- Notas de Crédito -->
+    <div class="menu-item" (click)="toggleNotas()">
+    <i class="fas fa-file-invoice"></i> Notas de Crédito
     </div>
+    <div *ngIf="notasVisible" class="sub-menu">
+    <div class="sub-menu-item" routerLink="/AnulacionVentas">Anulación de Ventas</div>
+    <div class="sub-menu-item" routerLink="/DevolucionProducto">Devolución de Producto</div>
+    </div>
+    <hr />
+
+     <!-- Entrega de Paquetes -->
+     <div class="menu-item" (click)="togglePaquetes()">
+        <i class="fas fa-truck"></i> Entrega de Paquetes
+    </div>
+    <div *ngIf="paquetesVisible" class="sub-menu">
+        <div class="sub-menu-item" routerLink="/Bitacora">Bitácora</div>
+        <div class="sub-menu-item" routerLink="/IngresoEntrega">Ingreso de Entrega</div>
+        <div class="sub-menu-item" routerLink="/SeguimientoEntrega">Seguimiento de Entrega</div>
+    </div>
+    <hr />
+
 </div>
+
