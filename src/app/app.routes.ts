@@ -38,13 +38,13 @@ export const routes: Routes = [
    { path: 'menu', component: MenuComponent }, 
    { path: 'ActualizarCliente', component: ActualizarClienteComponent },
    { path: 'BajaCliente', component: BajaClienteComponent },
-   { path: 'ContultaCliente', component: ConsultaClienteComponent },
+   { path: 'ConsultarCliente', component: ConsultaClienteComponent },
    { path: 'IngresoCliente', component: DatosClienteComponent },
    { path: 'Bitacora', component: BitacoraComponent },
    { path: 'IngresoEntrega', component: IngresoEntregaComponent },
    { path: 'Seguimiento', component: SeguimientoEntregaComponent },
    { path: 'AnulacionVentas', component: AnulacionVentasComponent },
-   { path: 'DevolicionProducto', component: DevolucionProductoComponent },
+   { path: 'DevolucionProducto', component: DevolucionProductoComponent },
    { path: 'ActualizarProducto', component: ActualizaProductoComponent },
    { path: 'BajaProducto', component: BajaProductoComponent },
    { path: 'ConsultaProducto', component: ConsultaProductoComponent },
@@ -52,6 +52,39 @@ export const routes: Routes = [
    { path: 'MenuCliente', component: MenuClientesComponent },
    { path: 'MenuNota', component: MenuNotacreditoComponent },
    { path: 'MenuProducto', component: MenuProductosComponent },
+   { path: 'ConsultaVenta', component: ConsultaVentaComponent },
+   { path: 'Bitacora', component: BitacoraComponent },
+   { path: 'IngresoEntrega', component: IngresoEntregaComponent },
+   { path: 'SeguimientoEntrega', component: SeguimientoEntregaComponent },
 ];
 
 export const routing = RouterModule.forRoot(routes);
+
+/*export const routes: Routes = [
+   { path: '', redirectTo: '/menu', pathMatch: 'full' },
+   { path: 'menu', component: MenuComponent }, 
+   { path: 'ActualizarCliente', component: ActualizarClienteComponent },
+   { path: 'BajaCliente', component: BajaClienteComponent },
+   { path: 'ConsultaCliente', component: ConsultaClienteComponent },
+   { path: 'IngresoCliente', component: DatosClienteComponent },
+   { path: 'Bitacora', component: BitacoraComponent },
+   { path: 'IngresoEntrega', component: IngresoEntregaComponent },
+   { path: 'Seguimiento', component: SeguimientoEntregaComponent },
+   { path: 'MenuCliente', component: MenuClientesComponent },
+   { path: 'MenuNota', component: MenuNotacreditoComponent, children: [
+       { path: 'AnulacionVentas', component: AnulacionVentasComponent },
+       { path: 'DevolucionProducto', component: DevolucionProductoComponent }
+     ]
+   },
+   { path: 'MenuProducto', component: MenuProductosComponent },
+   { path: 'MenuVenta', component: ConsultaVentaComponent },
+   { path: 'MenuPaquete', component: BitacoraComponent },
+   // Rutas de productos
+   { path: 'ActualizarProducto', component: ActualizaProductoComponent },
+   { path: 'BajaProducto', component: BajaProductoComponent },
+   { path: 'ConsultaProducto', component: ConsultaProductoComponent },
+   { path: 'IngresoProducto', component: IngresarProductoComponent },
+];
+
+export const routing = RouterModule.forRoot(routes);
+*/

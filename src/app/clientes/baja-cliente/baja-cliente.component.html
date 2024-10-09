@@ -1,1 +1,105 @@
-<p>baja-cliente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar de Baja Cliente</title>
+    <!-- Vincular Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="baja-cliente.component.css"> <!-- Vincula tu archivo CSS -->
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="form-container p-4 bg-dark text-white rounded shadow" style="max-width: 400px; width: 100%;">
+            <h1 class="text-center mb-4">Dar de Baja Cliente</h1>
+            <form>
+                <div class="form-group">
+                    <label for="codigoCliente">Código Cliente</label>
+                    <input type="text" id="codigoCliente" name="codigoCliente" placeholder="Ingrese código del cliente" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-block" onclick="buscarCliente()">Buscar</button>
+                </div>
+                <div id="clienteInfo" style="display: none;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>NIT</th>
+                                <th>Dirección</th>
+                                <th>Categoría</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="nombresCliente"></td>
+                                <td id="apellidosCliente"></td>
+                                <td id="nitCliente"></td>
+                                <td id="direccionCliente"></td>
+                                <td id="categoriaCliente"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <label for="estadoCliente">Estado Cliente</label>
+                        <select id="estadoCliente" name="estadoCliente" class="form-control">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger btn-block" onclick="darDeBaja()">Confirmar</button>
+                    </div>
+                </div>
+                <div id="mensaje" class="status"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vincular Bootstrap JS (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function buscarCliente() {
+            // Simula la búsqueda del cliente por código
+            const codigo = document.getElementById('codigoCliente').value;
+            const clienteInfo = document.getElementById('clienteInfo');
+            const estadoCliente = document.getElementById('estadoCliente');
+            const mensaje = document.getElementById('mensaje');
+            
+            // Aquí deberías agregar la lógica para buscar el cliente en tu base de datos
+            // Para el ejemplo, solo simula con un código específico
+            if (codigo === '001') {
+                document.getElementById('nombresCliente').textContent = 'Juan';
+                document.getElementById('apellidosCliente').textContent = 'Pérez';
+                document.getElementById('nitCliente').textContent = '123456789';
+                document.getElementById('direccionCliente').textContent = 'Calle Falsa 123';
+                document.getElementById('categoriaCliente').textContent = 'Regular';
+                estadoCliente.value = 'Activo';
+                clienteInfo.style.display = 'block';
+                mensaje.textContent = '';
+            } else {
+                clienteInfo.style.display = 'none';
+                mensaje.textContent = 'Cliente no encontrado';
+                mensaje.style.color = 'red';
+            }
+        }
+
+        function darDeBaja() {
+            // Lógica para cambiar el estado del cliente
+            const estado = document.getElementById('estadoCliente').value;
+            const mensaje = document.getElementById('mensaje');
+            if (estado) {
+                mensaje.textContent = `Estado del cliente cambiado a ${estado}`;
+                mensaje.style.color = 'green';
+            } else {
+                mensaje.textContent = 'Por favor, seleccione un estado';
+                mensaje.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+}
+
+
+
+.status {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center; /* Centrar el mensaje de estado */
+}

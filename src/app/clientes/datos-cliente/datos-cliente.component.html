@@ -1,1 +1,61 @@
-<p>datos-cliente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos de Cliente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="datos-cliente.component.css">
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="form-container">
+            <h1 class="text-center">Datos de Cliente</h1>
+            <form>
+                <div class="mb-3">
+                    <label for="codigoCliente" class="form-label">Código Cliente</label>
+                    <input type="text" id="codigoCliente" name="codigoCliente" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nombresCliente" class="form-label">Nombres Cliente</label>
+                    <input type="text" id="nombresCliente" name="nombresCliente" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
+                    <input type="text" id="apellidosCliente" name="apellidosCliente" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nit" class="form-label">NIT</label>
+                    <input type="text" id="nit" name="nit" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="direccionCliente" class="form-label">Dirección Cliente</label>
+                    <input type="text" id="direccionCliente" name="direccionCliente" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="categoriaCliente" class="form-label">Categoría Cliente</label>
+                    <select id="categoriaCliente" name="categoriaCliente" class="form-select" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="1">Categoría 1</option>
+                        <option value="2">Categoría 2</option>
+                        <option value="3">Categoría 3</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="estadoCliente" class="form-label">Estado Cliente</label>
+                    <select id="estadoCliente" name="estadoCliente" class="form-select" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Guardar" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

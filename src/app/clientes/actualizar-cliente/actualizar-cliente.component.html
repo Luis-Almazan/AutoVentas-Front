@@ -1,1 +1,60 @@
-<p>actualizar-cliente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Cliente</title>
+    <!-- Vincular Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="actualizar-cliente.component.css"> <!-- Vincula tu archivo CSS -->
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="form-container p-4 bg-dark text-white rounded shadow" style="max-width: 400px; width: 100%;">
+            <h1 class="text-center mb-4">Actualizar Cliente</h1>
+            <form>
+                <div class="form-group">
+                    <label for="codigoCliente">Código Cliente</label>
+                    <input type="text" id="codigoCliente" name="codigoCliente" readonly value="001" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nombresCliente">Nombres Cliente</label>
+                    <input type="text" id="nombresCliente" name="nombresCliente" value="Juan" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="apellidosCliente">Apellidos Cliente</label>
+                    <input type="text" id="apellidosCliente" name="apellidosCliente" value="Pérez" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nit">NIT</label>
+                    <input type="text" id="nit" name="nit" value="123456789" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="direccionCliente">Dirección Cliente</label>
+                    <input type="text" id="direccionCliente" name="direccionCliente" value="Calle Falsa 123" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="categoriaCliente">Categoría Cliente</label>
+                    <select id="categoriaCliente" name="categoriaCliente" required class="form-control">
+                        <option value="Regular" selected>Regular</option>
+                        <option value="Premium">Premium</option>
+                        <option value="VIP">VIP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estadoCliente">Estado Cliente</label>
+                    <input type="text" id="estadoCliente" name="estadoCliente" readonly value="Activo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Vincular Bootstrap JS (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

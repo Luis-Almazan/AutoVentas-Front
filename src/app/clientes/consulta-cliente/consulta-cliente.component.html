@@ -1,1 +1,72 @@
-<p>consulta-cliente works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Cliente</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="consulta-cliente.component.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Consulta Cliente</h1>
+        <form>
+            <div class="mb-3">
+                <label for="consultaPor" class="form-label">Consultar por:</label>
+                <select id="consultaPor" name="consultaPor" class="form-select" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="codigo">Código</option>
+                    <option value="nombres">Nombres</option>
+                    <option value="apellidos">Apellidos</option>
+                    <option value="nit">NIT</option>
+                    <option value="estado">Estado</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="consultaValor" class="form-label">Valor de Consulta:</label>
+                <input type="text" id="consultaValor" name="consultaValor" class="form-control" placeholder="Ingrese valor" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Consultar</button>
+            </div>
+        </form>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>Código Cliente</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>NIT</th>
+                    <th>Dirección</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se llenarán los datos de los clientes -->
+                <tr>
+                    <td>001</td>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>123456789</td>
+                    <td>Calle Falsa 123</td>
+                    <td>Regular</td>
+                    <td>Activo</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Ana</td>
+                    <td>Gómez</td>
+                    <td>987654321</td>
+                    <td>Avenida Siempre Viva 742</td>
+                    <td>Premium</td>
+                    <td>Inactivo</td>
+                </tr>
+                <!-- Agrega más filas según los datos de tus clientes -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

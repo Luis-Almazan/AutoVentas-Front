@@ -1,35 +1,78 @@
 .menu-container {
-    background-color: #001f3f;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    max-width: 300px; /* Máximo ancho del recuadro */
-    margin: auto; /* Centrar horizontalmente */
+    position: fixed; /* Fija el menú a la izquierda */
+    top: 0;
+    left: 0;
+    width: 200px; /* Ancho del menú */
+    height: 100%; /* Altura completa de la pantalla */
+    background-color: #f8f9fa; /* Color de fondo del menú */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra del menú */
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
 }
 
-.menu-container h1 {
-    color: #ffdd00;
-    margin-bottom: 30px;
+.menu-item {
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el item */
+    transition: background-color 0.3s; /* Transición suave para el efecto hover */
 }
 
-.menu-container .btn {
+.menu-item:hover {
+    background-color: #e9ecef; /* Color de fondo al pasar el ratón */
+}
+
+.sub-menu {
+    padding-left: 20px; /* Espaciado para los elementos del submenú */
+}
+
+.sub-menu-item {
+    padding: 10px; /* Espaciado interno para el submenú */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el item del submenú */
+    transition: background-color 0.3s; /* Transición suave para el efecto hover */
+}
+
+.sub-menu-item:hover {
+    background-color: #d1e7dd; /* Color de fondo al pasar el ratón sobre el submenú */
+}
+
+hr {
+    margin: 10px 0; /* Espaciado de las líneas */
+    border: none; /* Sin borde */
+    height: 1px; /* Altura de la línea */
+    background-color: #ccc; /* Color de la línea */
+}
+
+/* Contenedor principal */
+.app-container {
     display: flex;
+    height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+}
+
+/* Estilos del menú */
+.menu-container {
+    width: 200px; /* Ancho del menú */
+    height: 100vh; /* Asegura que ocupe toda la altura */
+    background-color: #f8f9fa; /* Color de fondo */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra del menú */
+    z-index: 1000;
+    position: fixed; /* Fija el menú a la izquierda */
+}
+
+/* Para el contenido (imagen) al lado del menú */
+.image-container {
+    flex-grow: 1; /* Ocupa el espacio restante a la derecha del menú */
+    margin-left: 200px; /* Añade margen para que no se superponga al menú */
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
+    overflow: hidden; /* Evita que la imagen se salga del contenedor */
+    height: 100vh; /* Altura completa de la pantalla */
+}
+
+/* Imagen de fondo */
+.background-image {
     width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    text-align: left;
+    height: 100%;
+    object-fit: cover; /* Hace que la imagen cubra todo el espacio sin distorsionarse */
 }
 
-.menu-container .btn:hover {
-    background-color: #ffdd00;
-    color: #001f3f;
-}
-
-.menu-container i {
-    margin-right: 10px;
-}

@@ -1,0 +1,38 @@
+body {
+    background-color: #f0f8ff;
+    color: #333;
+}
+
+.form-container {
+    background-color: #001f3f;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Ajusta el ancho según tus necesidades */
+}
+
+.form-container h1 {
+    color: #ffdd00;
+    margin-bottom: 20px;
+    text-align: center; /* Centra el título */
+}
+
+/* Cambia el color del texto de las etiquetas y el contenido del formulario */
+.form-container label {
+    color: #ffffff; /* Color blanco para las etiquetas */
+}
+
+.form-container input, 
+.form-container select {
+    color: #333; /* Color oscuro para el texto de los inputs y selects */
+    background-color: #ffffff; /* Fondo blanco para los inputs y selects */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Color de fondo del botón */
+    border-color: #007bff; /* Color del borde del botón */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Color de fondo del botón al pasar el mouse */
+}

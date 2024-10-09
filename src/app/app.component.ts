@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
+
 import { MenuComponent } from './menu/menu.component'; 
 // CLIENTES
 import { ActualizarClienteComponent } from './clientes/actualizar-cliente/actualizar-cliente.component';
