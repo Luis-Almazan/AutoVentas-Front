@@ -1,1 +1,104 @@
-<p>actualiza-producto works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización de Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #001f3f; /* Fondo azul oscuro para el contenedor */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Ajusta el ancho según tus necesidades */
+            max-width: 700px; /* Ancho máximo */
+            display: grid; /* Utiliza grid para el diseño en columnas */
+            grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+            gap: 20px; /* Espacio entre columnas */
+        }
+        .form-container h1 {
+            color: #ffdd00; /* Color amarillo para el título */
+            margin-bottom: 20px;
+            text-align: center;
+            grid-column: span 2; /* El título ocupa ambas columnas */
+        }
+        .form-group {
+            margin-bottom: 15px; /* Espacio entre cada grupo */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px; /* Espacio entre el label y el input */
+            color: #fff; /* Color blanco para los labels */
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            background-color: #007bff; /* Color de fondo del botón */
+            color: #fff; /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%; /* El botón ocupa todo el ancho */
+            grid-column: span 2; /* El botón ocupa ambas columnas */
+            margin-top: 35px; /* Margen superior para separar del resto del formulario */
+        }
+        .form-group button:hover {
+            background-color: #0056b3; /* Color de fondo al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Actualización de Producto</h1>
+        <div class="form-group">
+            <label for="product-code">Código:</label>
+            <input type="text" id="product-code" value="001" readonly>
+        </div>
+        <div class="form-group">
+            <label for="product-description">Descripción:</label>
+            <input type="text" id="product-description" value="Producto A">
+        </div>
+        <div class="form-group">
+            <label for="product-provider-code">Código Proveedor:</label>
+            <input type="text" id="product-provider-code" value="Proveedor 1">
+        </div>
+        <div class="form-group">
+            <label for="product-expiry-date">Fecha de Vencimiento:</label>
+            <input type="date" id="product-expiry-date" value="2024-12-31">
+        </div>
+        <div class="form-group">
+            <label for="product-location">Ubicación Física:</label>
+            <input type="text" id="product-location" value="Estante 1">
+        </div>
+        <div class="form-group">
+            <label for="product-min-stock">Existencia Mínima:</label>
+            <input type="number" id="product-min-stock" value="10">
+        </div>
+        <div class="form-group">
+            <label for="product-status">Estatus:</label>
+            <input type="text" id="product-status" value="Activo" readonly>
+        </div>
+        <div class="form-group">
+            <button type="submit">Actualizar Producto</button>
+        </div>
+    </div>
+</body>
+</html>

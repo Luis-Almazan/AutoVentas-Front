@@ -4,7 +4,7 @@
     left: 0;
     width: 200px; /* Ancho del menú */
     height: 100%; /* Altura completa de la pantalla */
-    background-color: #f8f9fa; /* Color de fondo del menú */
+    background-color: #007bff; /* Color de fondo azul */
     padding: 20px; /* Espaciado interno */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra del menú */
     z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
@@ -14,10 +14,11 @@
     padding: 10px; /* Espaciado interno */
     cursor: pointer; /* Cambia el cursor al pasar sobre el item */
     transition: background-color 0.3s; /* Transición suave para el efecto hover */
+    color: white; /* Color del texto blanco */
 }
 
 .menu-item:hover {
-    background-color: #e9ecef; /* Color de fondo al pasar el ratón */
+    background-color: #0056b3; /* Color de fondo al pasar el ratón (más oscuro que el azul) */
 }
 
 .sub-menu {
@@ -28,17 +29,16 @@
     padding: 10px; /* Espaciado interno para el submenú */
     cursor: pointer; /* Cambia el cursor al pasar sobre el item del submenú */
     transition: background-color 0.3s; /* Transición suave para el efecto hover */
+    color: white; /* Color del texto del submenú en blanco */
 }
 
 .sub-menu-item:hover {
-    background-color: #d1e7dd; /* Color de fondo al pasar el ratón sobre el submenú */
+    background-color: #004085; /* Color de fondo al pasar el ratón sobre el submenú */
 }
 
 hr {
     margin: 10px 0; /* Espaciado de las líneas */
     border: none; /* Sin borde */
-    height: 1px; /* Altura de la línea */
-    background-color: #ccc; /* Color de la línea */
+    height: 2px; /* Altura de la línea */
+    background-color: #ffffff; /* Color de la línea en blanco */
 }
-
-
