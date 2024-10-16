@@ -4,104 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Cliente</title>
-    <!-- Vincular Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="actualizar-cliente.component.css"> <!-- Vincula tu archivo CSS -->
-    <style>
-        body {
-            background-color: #f8f9fa; /* Fondo gris claro para el body */
-            height: 100vh; /* Altura completa de la ventana */
-            display: flex; /* Usar flexbox para centrar */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            margin: 0; /* Sin márgenes */
-        }
-
-        .form-container {
-            background-color: #001f3d; /* Fondo azul para el contenedor */
-            color: #ffdd00; /* Texto blanco */
-            padding: 20px;
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
-            max-width: 800px; /* Ancho máximo del contenedor */
-            margin: 0 auto; /* Centrar el contenedor */
-        }
-
-        .form-label {
-            color: white; /* Color blanco para los labels */
-        }
-
-        .form-control {
-            background-color: #0056b3; /* Fondo azul oscuro para los inputs */
-            color: white; /* Texto blanco en los inputs */
-            border: none; /* Sin borde */
-        }
-
-        .form-control::placeholder {
-            color: #e0e0e0; /* Color claro para el placeholder */
-        }
-
-        .btn-primary {
-            background-color: white; /* Fondo blanco para el botón */
-            color: #007bff; /* Texto azul en el botón */
-            border: none; /* Sin borde */
-        }
-
-        .btn-primary:hover {
-            background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
-        }
-    </style>
+    <link rel="stylesheet" href="./actualizar-cliente.component.css">
 </head>
 <body>
     <div class="container">
         <div class="form-container p-4 rounded shadow">
             <h1 class="text-center mb-4">Actualizar Cliente</h1>
-            <form>
+            <form (ngSubmit)="buscarCliente()">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="codigoCliente" class="form-label">Código Cliente</label>
-                        <input type="text" id="codigoCliente" name="codigoCliente" readonly value="001" class="form-control">
+                        <input type="text" id="codigoCliente" name="codigoCliente" [(ngModel)]="codigoCliente" [readonly]="cliente !== null" required class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="nombresCliente" class="form-label">Nombres Cliente</label>
-                        <input type="text" id="nombresCliente" name="nombresCliente" value="Juan" required class="form-control">
+                        <button type="submit" class="btn btn-primary btn-block mt-4">Consultar</button>
+                    </div>
+                </div>
+            </form>
+            <form *ngIf="cliente" (ngSubmit)="actualizarCliente()">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="primerNombre" class="form-label">Primer Nombre</label>
+                        <input type="text" id="primerNombre" name="primerNombre" [(ngModel)]="cliente.primerNombre" required class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
-                        <input type="text" id="apellidosCliente" name="apellidosCliente" value="Pérez" required class="form-control">
+                        <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+                        <input type="text" id="segundoNombre" name="segundoNombre" [(ngModel)]="cliente.segundoNombre" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="primerApellido" class="form-label">Primer Apellido</label>
+                        <input type="text" id="primerApellido" name="primerApellido" [(ngModel)]="cliente.primerApellido" required class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+                        <input type="text" id="segundoApellido" name="segundoApellido" [(ngModel)]="cliente.segundoApellido" class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="nit" class="form-label">NIT</label>
-                        <input type="text" id="nit" name="nit" value="123456789" required class="form-control">
+                        <input type="text" id="nit" name="nit" [(ngModel)]="cliente.nit" required class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="direccionCliente" class="form-label">Dirección Cliente</label>
-                        <input type="text" id="direccionCliente" name="direccionCliente" value="Calle Falsa 123" required class="form-control">
+                        <input type="text" id="direccionCliente" name="direccionCliente" [(ngModel)]="cliente.direccionCliente" required class="form-control">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="categoriaCliente" class="form-label">Categoría Cliente</label>
-                        <select id="categoriaCliente" name="categoriaCliente" required class="form-control">
-                            <option value="Regular" selected>Regular</option>
-                            <option value="Premium">Premium</option>
-                            <option value="VIP">VIP</option>
+                        <select id="categoriaCliente" name="categoriaCliente" [(ngModel)]="cliente.categoriaCliente" required class="form-control">
+                            <option [value]="1">Frecuente</option>
+                            <option [value]="0">No Frecuente</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="estadoCliente" class="form-label">Estado Cliente</label>
-                        <input type="text" id="estadoCliente" name="estadoCliente" readonly value="Activo" class="form-control">
+                        <select id="estadoCliente" name="estadoCliente" [(ngModel)]="cliente.status" required class="form-control">
+                            <option [value]="1">Activo</option>
+                            <option [value]="0">Inactivo</option>
+                        </select>
                     </div>
-                    <div class="col-12 mb-3">
-                        <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+                    <div class="col-6 mb-3">
+                        <button type="submit" class="btn btn-success btn-block">Actualizar</button>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <button type="button" class="btn btn-secondary btn-block" (click)="reiniciarFormulario()">Reiniciar</button>
                     </div>
                 </div>
             </form>
+            <div *ngIf="mensaje" id="mensaje" class="status">{{ mensaje }}</div>
         </div>
     </div>
 
-    <!-- Vincular Bootstrap JS (opcional) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

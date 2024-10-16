@@ -1,161 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dar de Baja Cliente</title>
-    <!-- Vincular Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="baja-cliente.component.css"> <!-- Vincula tu archivo CSS -->
-    <style>
-        body {
-            background-color: #f8f9fa; /* Fondo gris claro para el body */
-            height: 100vh; /* Altura completa de la ventana */
-            display: flex; /* Usar flexbox para centrar */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            margin: 0; /* Sin márgenes */
-        }
-
-        .form-container {
-            background-color: #001f3d; /* Fondo azul para el contenedor */
-            color: #ffdd00; /* Texto blanco */
-            padding: 20px;
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
-            max-width: 500px; /* Ancho máximo del contenedor */
-            margin: 0 auto; /* Centrar el contenedor */
-        }
-
-        .form-label {
-            color: white; /* Color blanco para los labels */
-        }
-
-        .form-control {
-            background-color: #0056b3; /* Fondo azul oscuro para los inputs */
-            color: white; /* Texto blanco en los inputs */
-            border: none; /* Sin borde */
-        }
-
-        .form-control::placeholder {
-            color: #e0e0e0; /* Color claro para el placeholder */
-        }
-
-        .btn-primary {
-            background-color: white; /* Fondo blanco para el botón de buscar */
-            color: #007bff; /* Texto azul en el botón */
-            border: none; /* Sin borde */
-            margin-top: 10px; /* Separar el botón del input */
-        }
-
-        .btn-primary:hover {
-            background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
-        }
-
-        .btn-danger {
-            background-color: red; /* Color rojo para el botón de confirmar */
-            color: white; /* Texto blanco */
-            border: none; /* Sin borde */
-        }
-
-        .btn-danger:hover {
-            background-color: darkred; /* Fondo rojo oscuro al pasar el ratón sobre el botón */
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="form-container p-4 rounded shadow">
-            <h1 class="text-center mb-4">Dar de Baja Cliente</h1>
-            <form>
-                <div class="form-group">
-                    <label for="codigoCliente" class="form-label">Código Cliente</label>
-                    <input type="text" id="codigoCliente" name="codigoCliente" placeholder="Ingrese código del cliente" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-block" onclick="buscarCliente()">Buscar</button>
-                </div>
-                <div id="clienteInfo" style="display: none;">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>NIT</th>
-                                <th>Dirección</th>
-                                <th>Categoría</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="nombresCliente"></td>
-                                <td id="apellidosCliente"></td>
-                                <td id="nitCliente"></td>
-                                <td id="direccionCliente"></td>
-                                <td id="categoriaCliente"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                        <label for="estadoCliente" class="form-label">Estado Cliente</label>
-                        <select id="estadoCliente" name="estadoCliente" class="form-control">
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-danger btn-block" onclick="darDeBaja()">Confirmar</button>
-                    </div>
-                </div>
-                <div id="mensaje" class="status"></div>
-            </form>
+<div class="container">
+  <div class="form-container p-4 rounded shadow">
+    <h1 class="text-center mb-4">Dar de Baja Cliente</h1>
+    <form>
+      <div class="form-group">
+        <label for="codigoCliente" class="form-label">Código Cliente</label>
+        <input type="number" id="codigoCliente" name="codigoCliente" [(ngModel)]="codigoCliente" placeholder="Ingrese código del cliente" required class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary btn-block" (click)="buscarCliente()">Buscar</button>
+      </div>
+      <div *ngIf="cliente" id="clienteInfo">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>NIT</th>
+              <th>Dirección</th>
+              <th>Categoría</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ cliente.primerNombre }} {{ cliente.segundoNombre }}</td>
+              <td>{{ cliente.primerApellido }} {{ cliente.segundoApellido }}</td>
+              <td>{{ cliente.nit }}</td>
+              <td>{{ cliente.direccionCliente }}</td>
+              <td>{{ cliente.categoriaCliente }}</td>
+              <td>{{ cliente.status === 1 ? 'Activo' : 'Inactivo' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+          <button type="button" class="btn btn-secondary btn-block" (click)="reiniciar()">Reiniciar</button>
         </div>
-    </div>
-
-    <!-- Vincular Bootstrap JS (opcional) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-
-    <script>
-        function buscarCliente() {
-            // Simula la búsqueda del cliente por código
-            const codigo = document.getElementById('codigoCliente').value;
-            const clienteInfo = document.getElementById('clienteInfo');
-            const estadoCliente = document.getElementById('estadoCliente');
-            const mensaje = document.getElementById('mensaje');
-            
-            // Aquí deberías agregar la lógica para buscar el cliente en tu base de datos
-            // Para el ejemplo, solo simula con un código específico
-            if (codigo === '001') {
-                document.getElementById('nombresCliente').textContent = 'Juan';
-                document.getElementById('apellidosCliente').textContent = 'Pérez';
-                document.getElementById('nitCliente').textContent = '123456789';
-                document.getElementById('direccionCliente').textContent = 'Calle Falsa 123';
-                document.getElementById('categoriaCliente').textContent = 'Regular';
-                estadoCliente.value = 'Activo';
-                clienteInfo.style.display = 'block';
-                mensaje.textContent = '';
-            } else {
-                clienteInfo.style.display = 'none';
-                mensaje.textContent = 'Cliente no encontrado';
-                mensaje.style.color = 'red';
-            }
-        }
-
-        function darDeBaja() {
-            // Lógica para cambiar el estado del cliente
-            const estado = document.getElementById('estadoCliente').value;
-            const mensaje = document.getElementById('mensaje');
-            if (estado) {
-                mensaje.textContent = `Estado del cliente cambiado a ${estado}`;
-                mensaje.style.color = 'green';
-            } else {
-                mensaje.textContent = 'Por favor, seleccione un estado';
-                mensaje.style.color = 'red';
-            }
-        }
-    </script>
-</body>
-</html>
+      </div>
+      <div id="mensaje" class="status" *ngIf="mensaje">
+        {{ mensaje }}
+      </div>
+    </form>
+  </div>
+</div>
