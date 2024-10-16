@@ -4,109 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta Producto</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Color de fondo claro */
-            color: #333; /* Color del texto */
-            display: flex; /* Usar flexbox */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            height: 100vh; /* Altura completa de la vista */
-            margin: 0; /* Sin margen */
-        }
-        .form-container {
-            background-color: #001f3f; /* Fondo azul oscuro */
-            padding: 30px; /* Espaciado interno */
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra */
-            width: 100%; /* Ancho completo */
-            max-width: 800px; /* Ancho máximo */
-            display: grid; /* Usar grid para el diseño */
-            grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-            gap: 15px; /* Espacio entre columnas */
-        }
-        .form-container h1 {
-            color: #ffdd00; /* Color amarillo para el título */
-            margin-bottom: 20px; /* Margen inferior */
-            text-align: center; /* Centrar texto */
-            grid-column: span 2; /* Ocupa ambas columnas */
-        }
-        .form-group {
-            margin-bottom: 0; /* Sin margen inferior */
-            text-align: center; /* Centrar texto dentro del grupo */
-        }
-        .form-group label {
-            display: block; /* Mostrar como bloque */
-            margin-bottom: 5px; /* Espacio entre el label y el input */
-            color: #fff; /* Color blanco */
-            text-align: left; /* Alinear texto a la izquierda */
-        }
-        .form-group input, .form-group select {
-            width: 100%; /* Ancho completo */
-            padding: 10px; /* Espaciado interno */
-            border-radius: 5px; /* Bordes redondeados */
-            border: 1px solid #ddd; /* Borde gris claro */
-            box-sizing: border-box; /* Incluir padding y border en el ancho total */
-        }
-        .form-group button {
-            background-color: #007bff; /* Color del botón */
-            color: #fff; /* Color del texto */
-            border: none; /* Sin borde */
-            padding: 10px; /* Espaciado interno */
-            border-radius: 5px; /* Bordes redondeados */
-            cursor: pointer; /* Cambiar cursor a mano */
-            font-size: 16px; /* Tamaño de fuente */
-            transition: background-color 0.3s ease; /* Transición suave */
-            width: 100%; /* Ancho completo */
-            grid-column: span 2; /* Ocupa ambas columnas */
-            margin-top: 10px; /* Menos espacio arriba del botón */
-        }
-        .form-group button:hover {
-            background-color: #0056b3; /* Color al pasar el ratón */
-        }
-        table {
-            width: 100%; /* Ancho completo */
-            border-collapse: collapse; /* Colapsar bordes */
-            margin-top: 20px; /* Espacio superior */
-            grid-column: span 2; /* Ocupa ambas columnas */
-        }
-        table, th, td {
-            border: 1px solid #ddd; /* Borde gris claro */
-        }
-        th {
-            background-color: #007bff; /* Color del encabezado */
-            color: #fff; /* Color del texto del encabezado */
-            padding: 10px; /* Espaciado interno */
-            text-align: left; /* Alinear texto a la izquierda */
-        }
-        td {
-            background-color: #fff; /* Color de fondo de las celdas */
-            color: #333; /* Color del texto */
-            padding: 10px; /* Espaciado interno */
-            text-align: left; /* Alinear texto a la izquierda */
-        }
-    </style>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./consulta-producto.component.css">
 </head>
 <body>
-    <div class="form-container">
-        <h1>Consulta Producto</h1>
-        <div class="form-group">
-            <label for="search-by">Buscar por:</label>
-            <select id="search-by">
-                <option value="codigo">Código</option>
-                <option value="descripcion">Descripción</option>
-                <option value="fecha">Fecha de Vencimiento</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="search-query">Introduce el valor a buscar:</label>
-            <input type="text" id="search-query" placeholder="Introduce el valor a buscar">
-        </div>
-        <div class="form-group">
-            <button type="button" onclick="searchProducts()">Buscar</button>
-        </div>
-        <table>
+    <div class="form-container container">
+        <h1 class="text-center">Consulta Producto</h1>
+        <form (ngSubmit)="consultarProductos()" #form="ngForm">
+            <div class="mb-3">
+                <label for="consultaPor" class="form-label">Buscar por:</label>
+                <select id="consultaPor" name="consultaPor" class="form-select" required [(ngModel)]="consultaPor" #consultaPorModel="ngModel">
+                    <option value="codigo">Código</option>
+                    <option value="descripcion">Descripción</option>
+                    <option value="fecha">Fecha de Vencimiento</option>
+                    <option value="status">Estatus</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="consultaValor" class="form-label">Introduce el valor a buscar:</label>
+                <input type="text" id="consultaValor" name="consultaValor" class="form-control" placeholder="Introduce el valor a buscar" required [(ngModel)]="consultaValor" #consultaValorModel="ngModel">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Buscar</button>
+            </div>
+        </form>
+        <table class="table table-bordered mt-4">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -114,40 +36,23 @@
                     <th>Código Proveedor</th>
                     <th>Fecha de Vencimiento</th>
                     <th>Ubicación Física</th>
-                    <th>Existencia Mínima</th>
+                    <th>Existencia</th>
                     <th>Estatus</th>
                 </tr>
             </thead>
-            <tbody id="product-results">
-                <!-- Ejemplo de filas de productos. Reemplaza estos datos con los productos reales -->
-                <tr>
-                    <td>001</td>
-                    <td>Producto A</td>
-                    <td>Proveedor 1</td>
-                    <td>2024-12-31</td>
-                    <td>Estante 1</td>
-                    <td>10</td>
-                    <td>Activo</td>
+            <tbody>
+                <tr *ngFor="let producto of productos">
+                    <td>{{ producto.codProducto }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.codProveedorNavigation?.nombre }}</td>
+                    <td>{{ producto.fechaVencimiento }}</td>
+                    <td>{{ producto.ubicacionNavigation?.nombre }}</td>
+                    <td>{{ producto.existencia }}</td>
+                    <td>{{ producto.status === 1 ? 'Activo' : 'Inactivo' }}</td>
                 </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Producto B</td>
-                    <td>Proveedor 2</td>
-                    <td>2024-11-15</td>
-                    <td>Estante 2</td>
-                    <td>5</td>
-                    <td>Activo</td>
-                </tr>
-                <!-- Más filas según sea necesario -->
             </tbody>
         </table>
     </div>
-
-    <script>
-        function searchProducts() {
-            // Lógica para realizar la búsqueda y actualizar la tabla con los resultados
-            // Aquí puedes agregar el código necesario para manejar la búsqueda y mostrar los resultados
-        }
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

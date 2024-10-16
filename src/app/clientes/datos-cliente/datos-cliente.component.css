@@ -1,0 +1,33 @@
+.form-container {
+    width: 50%; /* Ajuste del ancho del formulario al 50% */
+    background-color: #001f3d; /* Fondo azul del formulario */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    color: #ffdd00; /* Texto blanco */
+}
+
+.form-container .form-label {
+    color: white; /* Color blanco para los labels */
+}
+
+.form-container .form-control,
+.form-container .form-select {
+    background-color: #0056b3; /* Fondo azul oscuro para los inputs y selects */
+    color: white; /* Texto blanco dentro de los inputs y selects */
+    border: none; /* Sin borde */
+}
+
+.form-container .form-control::placeholder {
+    color: #e0e0e0; /* Color claro para los placeholders */
+}
+
+.form-container .btn-primary {
+    background-color: white; /* Fondo blanco para el botón */
+    color: #007bff; /* Texto azul en el botón */
+    border: none; /* Sin borde */
+}
+
+.form-container .btn-primary:hover {
+    background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
+}

@@ -8,10 +8,10 @@
 <body>
     <div class="container">
         <h1 class="text-center">Consulta Cliente</h1>
-        <form (ngSubmit)="consultarClientes()">
+        <form (ngSubmit)="consultarClientes()" #form="ngForm">
             <div class="mb-3">
                 <label for="consultaPor" class="form-label">Consultar por:</label>
-                <select id="consultaPor" name="consultaPor" class="form-select" required [(ngModel)]="consultaPor" #consultaPor="ngModel">
+                <select id="consultaPor" name="consultaPor" class="form-select" required [(ngModel)]="consultaPor" #consultaPorModel="ngModel">
                     <option value="">Seleccionar...</option>
                     <option value="codigo">Código</option>
                     <option value="nombres">Nombres</option>
@@ -22,10 +22,10 @@
             </div>
             <div class="mb-3">
                 <label for="consultaValor" class="form-label">Valor de Consulta:</label>
-                <input type="text" id="consultaValor" name="consultaValor" class="form-control" placeholder="Ingrese valor" required [(ngModel)]="consultaValor" #consultaValor="ngModel">
+                <input type="text" id="consultaValor" name="consultaValor" class="form-control" placeholder="Ingrese valor" required [(ngModel)]="consultaValor" #consultaValorModel="ngModel">
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Consultar</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Consultar</button>
             </div>
         </form>
         <table class="table table-bordered mt-4">
@@ -51,12 +51,13 @@
                     <td>{{ cliente.segundoApellido }}</td>
                     <td>{{ cliente.nit }}</td>
                     <td>{{ cliente.direccionCliente }}</td>
-                    <td>{{ cliente.categoriaCliente }}</td>
+                    <td>{{ cliente.categoriaCliente === 1 ? 'Frecuente' : 'No Frecuente' }}</td>
                     <!-- Transformar el estado en la vista -->
                     <td>{{ cliente.status === 1 ? 'Activo' : 'Desactivado' }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -5,99 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos de Cliente</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="datos-cliente.component.css">
-    <style>
-        .form-container {
-            width: 50%; /* Ajuste del ancho del formulario al 50% */
-            background-color: #001f3d; /* Fondo azul del formulario */
-            padding: 20px; /* Espaciado interno */
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            color: #ffdd00; /* Texto blanco */
-        }
-
-        .form-container .form-label {
-            color: white; /* Color blanco para los labels */
-        }
-
-        .form-container .form-control,
-        .form-container .form-select {
-            background-color: #0056b3; /* Fondo azul oscuro para los inputs y selects */
-            color: white; /* Texto blanco dentro de los inputs y selects */
-            border: none; /* Sin borde */
-        }
-
-        .form-container .form-control::placeholder {
-            color: #e0e0e0; /* Color claro para los placeholders */
-        }
-
-        .form-container .btn-primary {
-            background-color: white; /* Fondo blanco para el botón */
-            color: #007bff; /* Texto azul en el botón */
-            border: none; /* Sin borde */
-        }
-
-        .form-container .btn-primary:hover {
-            background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
-        }
-    </style>
+    <link rel="stylesheet" href="./datos-cliente.component.css">
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="form-container">
             <h1 class="text-center">Datos de Cliente</h1>
-            <form>
+            <form (ngSubmit)="crearCliente()" #form="ngForm">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="codigoCliente" class="form-label">Código Cliente</label>
-                        <input type="text" id="codigoCliente" name="codigoCliente" class="form-control" required>
+                        <label for="primerNombre" class="form-label">Primer Nombre</label>
+                        <input type="text" id="primerNombre" name="primerNombre" class="form-control" [(ngModel)]="cliente.primerNombre" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="nombresCliente" class="form-label">Nombres Cliente</label>
-                        <input type="text" id="nombresCliente" name="nombresCliente" class="form-control" required>
+                        <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+                        <input type="text" id="segundoNombre" name="segundoNombre" class="form-control" [(ngModel)]="cliente.segundoNombre">
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="apellidosCliente" class="form-label">Apellidos Cliente</label>
-                        <input type="text" id="apellidosCliente" name="apellidosCliente" class="form-control" required>
+                        <label for="primerApellido" class="form-label">Primer Apellido</label>
+                        <input type="text" id="primerApellido" name="primerApellido" class="form-control" [(ngModel)]="cliente.primerApellido" required>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+                        <input type="text" id="segundoApellido" name="segundoApellido" class="form-control" [(ngModel)]="cliente.segundoApellido">
+                    </div>
+                </div>
+                
+                <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="nit" class="form-label">NIT</label>
-                        <input type="text" id="nit" name="nit" class="form-control" required>
+                        <input type="number" id="nit" name="nit" class="form-control" [(ngModel)]="cliente.nit" required>
                     </div>
-                </div>
-                
-                <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="direccionCliente" class="form-label">Dirección Cliente</label>
-                        <input type="text" id="direccionCliente" name="direccionCliente" class="form-control" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="categoriaCliente" class="form-label">Categoría Cliente</label>
-                        <select id="categoriaCliente" name="categoriaCliente" class="form-select" required>
-                            <option value="">Seleccionar...</option>
-                            <option value="1">Categoría 1</option>
-                            <option value="2">Categoría 2</option>
-                            <option value="3">Categoría 3</option>
-                        </select>
+                        <input type="text" id="direccionCliente" name="direccionCliente" class="form-control" [(ngModel)]="cliente.direccionCliente" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="estadoCliente" class="form-label">Estado Cliente</label>
-                        <select id="estadoCliente" name="estadoCliente" class="form-select" required>
+                        <label for="categoriaCliente" class="form-label">Categoría Cliente</label>
+                        <select id="categoriaCliente" name="categoriaCliente" class="form-select" [(ngModel)]="cliente.categoriaCliente" required>
                             <option value="">Seleccionar...</option>
-                            <option value="activo">Activo</option>
-                            <option value="inactivo">Inactivo</option>
+                            <option value="0">Frecuente</option>
+                            <option value="1">No Frecuente</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="status" class="form-label">Estado Cliente</label>
+                        <select id="status" name="status" class="form-select" [(ngModel)]="cliente.status" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
                         </select>
                     </div>
                 </div>
                 
                 <div class="mb-3 text-center">
-                    <input type="submit" value="Guardar" class="btn btn-primary">
+                    <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="form.invalid">
                 </div>
             </form>
         </div>

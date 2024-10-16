@@ -38,23 +38,34 @@ export class ConsultaClienteComponent implements OnInit {
 
       this.clienteService.getClientes().subscribe((data: Cliente[]) => {
         this.clientes = data.filter((cliente: Cliente) => {
+          let resultadoComparacion = false;
+
           switch (this.consultaPor) {
             case 'codigo':
-              return cliente.codCliente.toString() === valorConsulta.toString();
+              resultadoComparacion = cliente.codCliente.toString() === valorConsulta.toString();
+              break;
             case 'nombres':
-              return cliente.primerNombre.toLowerCase().includes(valorConsulta) ||
-                (cliente.segundoNombre?.toLowerCase().includes(valorConsulta) ?? false);
+              resultadoComparacion =
+                cliente.primerNombre.toLowerCase() === valorConsulta ||
+                (cliente.segundoNombre ? cliente.segundoNombre.toLowerCase() === valorConsulta : false);
+              break;
             case 'apellidos':
-              return cliente.primerApellido.toLowerCase().includes(valorConsulta) ||
-                (cliente.segundoApellido?.toLowerCase().includes(valorConsulta) ?? false);
+              resultadoComparacion =
+                cliente.primerApellido.toLowerCase() === valorConsulta ||
+                (cliente.segundoApellido ? cliente.segundoApellido.toLowerCase() === valorConsulta : false);
+              break;
             case 'nit':
-              return cliente.nit.toString() === valorConsulta.toString();
+              resultadoComparacion = cliente.nit.toString() === valorConsulta.toString();
+              break;
             case 'estado':
               const statusTexto = cliente.status === 1 ? 'activo' : 'desactivado';
-              return statusTexto.includes(valorConsulta.toString().toLowerCase());
+              resultadoComparacion = statusTexto === valorConsulta.toString().toLowerCase();
+              break;
             default:
-              return false;
+              resultadoComparacion = false;
           }
+
+          return resultadoComparacion;
         });
       });
     } else {
