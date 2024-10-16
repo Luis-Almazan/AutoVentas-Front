@@ -33,7 +33,7 @@ import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.com
 // ***********************************************************************************************
 
 
-@Component({
+@Component({  
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaClienteComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent,MenuClientesComponent,MenuNotacreditoComponent,MenuProductosComponent,ConsultaVentaComponent],

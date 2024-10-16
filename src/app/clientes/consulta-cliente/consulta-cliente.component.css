@@ -1,1 +1,56 @@
+body {
+    background-color: #f8f9fa; /* Fondo gris claro para el body */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
 
+.container {
+    background-color: #001f3d; /* Fondo azul para el contenedor */
+    color: #ffdd00; /* Texto blanco */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
+    max-width: 800px; /* Ancho máximo del contenedor */
+}
+
+.form-label {
+    color: white; /* Color blanco para los labels */
+}
+
+.form-control,
+.form-select {
+    background-color: #0056b3; /* Fondo azul oscuro para los inputs y selects */
+    color: white; /* Texto blanco en los inputs y selects */
+    border: none; /* Sin borde */
+}
+
+.form-control::placeholder {
+    color: #e0e0e0; /* Color claro para el placeholder */
+}
+
+.btn-primary {
+    background-color: white; /* Fondo blanco para el botón */
+    color: #007bff; /* Texto azul en el botón */
+    border: none; /* Sin borde */
+}
+
+.btn-primary:hover {
+    background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
+}
+
+table {
+    background-color: white; /* Fondo blanco para la tabla */
+    color: black; /* Texto negro para la tabla */
+}
+
+table th, table td {
+    text-align: center; /* Centrar el texto en las celdas */
+}
+
+table thead th {
+    background-color: #0056b3; /* Fondo azul oscuro para los encabezados de la tabla */
+    color: white; /* Texto blanco para los encabezados */
+}
