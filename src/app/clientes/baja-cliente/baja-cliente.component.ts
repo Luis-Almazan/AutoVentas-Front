@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,10 @@ import { Observable } from 'rxjs';
 })
 export class BajaClienteComponent {
   cliente: Cliente | null = null;
+  ClientStatus: ActualizarStatusRequest = {
+    codCliente: 0,
+    status: 0
+  };
   codigoCliente: number | null = null;
   mensaje: string = '';
 
@@ -33,15 +38,18 @@ export class BajaClienteComponent {
       });
     }
   }
-/*
+
   darDeBaja(): void {
-    if (this.cliente) {
-      this.clienteService.actualizarStatus(this.cliente.codCliente, 0).subscribe((response: ActualizarStatusRequest) => {
+    if (this.codigoCliente !== null) {
+      this.clienteService.actualizarStatus(this.codigoCliente, 0).subscribe((response: ActualizarStatusRequest) => {
         this.mensaje = 'Cliente dado de baja exitosamente';
-        this.cliente = { ...this.cliente, status: 0 };
+        this.ClientStatus = { 
+          ...this.ClientStatus, 
+          status: 0 
+        };
       });
     }
-  }*/
+  }
 
   reiniciar(): void {
     this.cliente = null;
