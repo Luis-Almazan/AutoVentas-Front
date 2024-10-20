@@ -15,7 +15,7 @@ export class ProductoService {
   getProductos(): Observable<any> {
     return this.http.get(`${this.apiUrl}/ObtenerProductos`);
   }
-
+ 
   // Método GET - Obtener un producto por su ID
   getProductoPorId(codProducto: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/ObtenerProductoPorId/${codProducto}`);

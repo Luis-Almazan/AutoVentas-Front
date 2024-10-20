@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta Producto</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./consulta-producto.component.css">
 </head>
 <body>
@@ -33,7 +32,7 @@
                 <tr>
                     <th>Código</th>
                     <th>Descripción</th>
-                    <th>Código Proveedor</th>
+                    <th>Proveedor</th>
                     <th>Fecha de Vencimiento</th>
                     <th>Ubicación Física</th>
                     <th>Existencia</th>
@@ -41,18 +40,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let producto of productos">
+                <tr *ngFor="let producto of productosConDetalles">
                     <td>{{ producto.codProducto }}</td>
                     <td>{{ producto.descripcion }}</td>
-                    <td>{{ producto.codProveedorNavigation?.nombre }}</td>
+                    <td>{{ producto.proveedorNombre }}</td>
                     <td>{{ producto.fechaVencimiento }}</td>
-                    <td>{{ producto.ubicacionNavigation?.nombre }}</td>
+                    <td>{{ producto.ubicacionNombre }}</td>
                     <td>{{ producto.existencia }}</td>
                     <td>{{ producto.status === 1 ? 'Activo' : 'Inactivo' }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
+   </body>
 </html>
