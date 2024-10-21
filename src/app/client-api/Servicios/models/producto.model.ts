@@ -12,6 +12,6 @@ export interface Producto {
     precio: number;
     status: number;
     codProveedorNavigation?: Proveedor;
-    detalleVenta: DetalleVentum[];
+    //detalleVenta: DetalleVentum[];
     ubicacionNavigation?: Ubicacion;
   }

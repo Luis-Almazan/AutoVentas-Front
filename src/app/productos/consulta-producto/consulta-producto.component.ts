@@ -71,34 +71,69 @@ export class ConsultaProductoComponent implements OnInit {
   consultarProductos(): void {
     if (this.consultaPor && this.consultaValor) {
       const valorConsulta = typeof this.consultaValor === 'string' ? this.consultaValor.trim().toLowerCase() : this.consultaValor;
-
-      this.obtenerProductosConDetalles();
-
-      this.productosConDetalles = this.productosConDetalles.filter((producto: any) => {
-        let resultadoComparacion = false;
-
-        switch (this.consultaPor) {
-          case 'codigo':
-            resultadoComparacion = producto.codProducto.toString() === valorConsulta.toString();
-            break;
-          case 'descripcion':
-            resultadoComparacion = producto.descripcion.toLowerCase() === valorConsulta.toString();
-            break;
-          case 'fecha':
-            resultadoComparacion = producto.fechaVencimiento === valorConsulta;
-            break;
-          case 'status':
-            const statusTexto = producto.status === 1 ? 'activo' : 'inactivo';
-            resultadoComparacion = statusTexto === valorConsulta.toString().toLowerCase();
-            break;
-          default:
-            resultadoComparacion = false;
+  
+      // Obtener todos los productos con detalles antes de realizar el filtro
+      this.productoService.getProductos().subscribe((productos: Producto[]) => {
+        if (productos.length > 0) {
+          const proveedores$ = productos.map(producto =>
+            producto.codProveedor !== undefined
+              ? this.proveedorService.getProveedorPorId(producto.codProveedor)
+              : new Observable<Proveedor>((observer) => {
+                  observer.next({ codProveedor: 0, nombre: 'Sin Proveedor', descripcion: '', productos: [] });
+                  observer.complete();
+                })
+          );
+  
+          const ubicaciones$ = productos.map(producto =>
+            producto.ubicacion !== undefined
+              ? this.ubicacionService.getUbicacionPorId(producto.ubicacion)
+              : new Observable<Ubicacion>((observer) => {
+                  observer.next({ codUbicacion: 0, nombre: 'Sin Ubicación', descripcion: '', productos: [] });
+                  observer.complete();
+                })
+          );
+  
+          forkJoin([forkJoin(proveedores$), forkJoin(ubicaciones$)]).subscribe({
+            next: ([proveedores, ubicaciones]: [Proveedor[], Ubicacion[]]) => {
+              this.productosConDetalles = productos.map((producto, index) => ({
+                ...producto,
+                proveedorNombre: proveedores[index]?.nombre || 'Sin Proveedor',
+                ubicacionNombre: ubicaciones[index]?.nombre || 'Sin Ubicación'
+              }));
+  
+              // Filtrar después de obtener los detalles
+              this.productosConDetalles = this.productosConDetalles.filter((producto: any) => {
+                let resultadoComparacion = false;
+  
+                switch (this.consultaPor) {
+                  case 'codigo':
+                    resultadoComparacion = producto.codProducto.toString() === valorConsulta.toString();
+                    break;
+                  case 'descripcion':
+                    resultadoComparacion = producto.descripcion.toLowerCase() === valorConsulta.toString();
+                    break;
+                  case 'fecha':
+                    resultadoComparacion = producto.fechaVencimiento === valorConsulta;
+                    break;
+                  case 'status':
+                    const statusTexto = producto.status === 1 ? 'activo' : 'inactivo';
+                    resultadoComparacion = statusTexto === valorConsulta.toString().toLowerCase();
+                    break;
+                  default:
+                    resultadoComparacion = false;
+                }
+  
+                return resultadoComparacion;
+              });
+            },
+            error: (error) => {
+              console.error('Error al obtener detalles de proveedor/ubicación:', error);
+            }
+          });
         }
-
-        return resultadoComparacion;
       });
     } else {
       this.obtenerProductosConDetalles(); // Si no hay filtro, obtenemos todos los productos
     }
   }
-}
+  }

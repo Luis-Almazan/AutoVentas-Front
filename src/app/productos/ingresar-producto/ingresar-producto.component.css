@@ -1,0 +1,43 @@
+body {
+    background-color: #f0f8ff; /* Color de fondo claro */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    margin: 0; /* Sin márgenes */
+}
+
+.form-container {
+    background-color: #001f3f; /* Fondo azul oscuro */
+    color: #ffdd00; /* Texto blanco */
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
+    max-width: 800px; /* Ancho máximo del contenedor */
+}
+
+.form-label {
+    color: white; /* Color blanco para los labels */
+}
+
+.form-control, .form-select {
+    background-color: #0056b3; /* Fondo azul oscuro para los inputs */
+    color: white; /* Texto blanco en los inputs */
+    border: none; /* Sin borde */
+}
+
+.form-control::placeholder {
+    color: #e0e0e0; /* Color claro para el placeholder */
+}
+
+.btn-primary {
+    background-color: white; /* Fondo blanco para el botón de buscar */
+    color: #007bff; /* Texto azul en el botón */
+    border: none; /* Sin borde */
+    margin-top: 10px; /* Separar el botón del input */
+}
+
+.btn-primary:hover {
+    background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
+}
