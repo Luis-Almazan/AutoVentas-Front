@@ -1,0 +1,65 @@
+body {
+    background-color: #f8f9fa; /* Fondo gris claro para el body */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    margin: 0; /* Sin márgenes */
+  }
+  
+  .form-container {
+    background-color: #001f3d; /* Fondo azul para el contenedor */
+    color: #ffdd00; /* Texto blanco */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
+    max-width: 500px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
+  }
+  
+  .form-label {
+    color: white; /* Color blanco para los labels */
+  }
+  
+  .form-control {
+    background-color: #0056b3; /* Fondo azul oscuro para los inputs */
+    color: white; /* Texto blanco en los inputs */
+    border: none; /* Sin borde */
+  }
+  
+  .form-control::placeholder {
+    color: #e0e0e0; /* Color claro para el placeholder */
+  }
+  
+  .btn-primary {
+    background-color: white; /* Fondo blanco para el botón de buscar */
+    color: #007bff; /* Texto azul en el botón */
+    border: none; /* Sin borde */
+    margin-top: 10px; /* Separar el botón del input */
+  }
+  
+  .btn-primary:hover {
+    background-color: #e0e0e0; /* Fondo gris claro al pasar el ratón sobre el botón */
+  }
+  
+  .btn-danger {
+    background-color: red; /* Color rojo para el botón de confirmar */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+  }
+  
+  .btn-danger:hover {
+    background-color: darkred; /* Fondo rojo oscuro al pasar el ratón sobre el botón */
+  }
+  
+  .btn-secondary {
+    background-color: gray; /* Color gris para el botón de reiniciar */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+  }
+  
+  .btn-secondary:hover {
+    background-color: darkgray; /* Fondo gris oscuro al pasar el ratón sobre el botón */
+  }
+  

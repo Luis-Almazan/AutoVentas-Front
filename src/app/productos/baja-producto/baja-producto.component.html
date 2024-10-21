@@ -1,139 +1,42 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baja de Producto</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .form-container {
-            background-color: #001f3f;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            width: 600px; /* Ajusta el ancho según tus necesidades */
-            display: grid; /* Usar grid para el diseño */
-            grid-template-columns: 1fr; /* Una columna */
-            gap: 15px; /* Espacio entre elementos */
-        }
-        .form-container h1 {
-            color: #ffdd00;
-            margin-bottom: 20px;
-            text-align: center;
-            grid-column: span 1; /* Ocupa la columna completa */
-        }
-        .form-group {
-            margin-bottom: 0; /* Sin margen inferior */
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px; /* Espaciado mayor entre el label y el input */
-            color: #fff;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-            margin-bottom: 10px; /* Espaciado entre el input/select y el botón */
-        }
-        .form-group button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-        .form-group small {
-            color: #ffdd00;
-            display: block;
-            margin-top: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            grid-column: span 1; /* Ocupa la columna completa */
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px;
-            text-align: left;
-        }
-        td {
-            background-color: #fff;
-            color: #333;
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
-</head>
-<body>
-    <div class="form-container">
-        <h1>Baja de Producto</h1>
-        <form>
-            <div class="form-group">
-                <label for="search-code">Código del Producto:</label>
-                <input type="text" id="search-code" placeholder="Introduce el código del producto">
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="searchProduct()">Buscar</button>
-            </div>
-            <div class="form-group">
-                <label for="product-description">Descripción:</label>
-                <input type="text" id="product-description" readonly>
-            </div>
-            <div class="form-group">
-                <label for="product-status">Estado:</label>
-                <select id="product-status">
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="button" onclick="confirmBaja()">Confirmar Baja</button>
-            </div>
-        </form>
+<div class="container">
+    <div class="form-container p-4 rounded shadow">
+      <h1 class="text-center mb-4">Dar de Baja Producto</h1>
+      <form>
+        <div class="form-group">
+          <label for="codigoProducto" class="form-label">Código Producto</label>
+          <input type="number" id="codigoProducto" name="codigoProducto" [(ngModel)]="codigoProducto" placeholder="Ingrese código del producto" required class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary btn-block" (click)="buscarProducto()">Buscar</button>
+        </div>
+        <div *ngIf="producto" id="productoInfo">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.existencia }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.status === 1 ? 'Activo' : 'Inactivo' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="form-group">
+            <button type="button" class="btn btn-danger btn-block" (click)="darDeBaja()">Dar de Baja</button>
+            <button type="button" class="btn btn-secondary btn-block" (click)="reiniciar()">Reiniciar</button>
+          </div>
+        </div>
+        <div id="mensaje" class="status" *ngIf="mensaje">
+          {{ mensaje }}
+        </div>
+      </form>
     </div>
-
-    <script>
-        function searchProduct() {
-            // Lógica para buscar el producto por código y mostrar sus datos
-            // Aquí puedes agregar el código necesario para manejar la búsqueda y mostrar los datos del producto
-            document.getElementById('product-description').value = 'Producto Ejemplo'; // Ejemplo de descripción
-            document.getElementById('product-status').value = 'activo'; // Ejemplo de estado
-        }
-
-        function confirmBaja() {
-            // Lógica para confirmar la baja del producto
-            const status = document.getElementById('product-status').value;
-            if (status === 'inactivo') {
-                alert('El producto ha sido dado de baja.');
-            } else {
-                alert('El producto no ha sido dado de baja.');
-            }
-        }
-    </script>
-</body>
-</html>
+  </div>
+  
