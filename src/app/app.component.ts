@@ -29,14 +29,14 @@ import {MenuNotacreditoComponent} from './sub-menus/menu-notacredito/menu-notacr
 import {MenuProductosComponent} from './sub-menus/menu-productos/menu-productos.component';
 // ***********************************************************************************************
 //VENTAS
-import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.component';
+import {VentasComponent} from './ventas/consulta-venta/consulta-venta.component';
 // ***********************************************************************************************
 
 
 @Component({  
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaClienteComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent,MenuClientesComponent,MenuNotacreditoComponent,MenuProductosComponent,ConsultaVentaComponent],
+  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,VentasComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent,MenuClientesComponent,MenuNotacreditoComponent,MenuProductosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

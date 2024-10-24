@@ -11,9 +11,9 @@ export interface Ventum {
     totalVenta: number;
     statusVenta?: number;
     codAnulacionVenta?: number;
-    anulacionVenta?: AnulacionVenta[];
-    clienteNavigation?: Cliente;
-    detalleVenta: DetalleVentum[];
-    entregaPaquetes: EntregaPaquete[];
-    notasCreditos: NotasCredito[];
+    //anulacionVenta?: AnulacionVenta[];
+    //clienteNavigation?: Cliente;
+    //detalleVenta: DetalleVentum[];
+    //entregaPaquetes: EntregaPaquete[];
+    //notasCreditos: NotasCredito[];
   }

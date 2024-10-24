@@ -5,117 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa; /* Fondo gris claro para el body */
-            height: 100vh; /* Altura completa de la ventana */
-            display: flex; /* Usar flexbox para centrar */
-            justify-content: center; /* Centrar horizontalmente */
-            align-items: center; /* Centrar verticalmente */
-            margin: 0; /* Sin márgenes */
-        }
-
-        .form-container {
-            background-color: #001f3d; /* Fondo azul para el contenedor */
-            color: #ffdd00; /* Texto blanco */
-            padding: 20px;
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-            width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
-            max-width: 600px; /* Ancho máximo del contenedor */
-            margin: 0 auto; /* Centrar el contenedor */
-        }
-
-        .form-label {
-            color: white; /* Color blanco para los labels */
-            margin-bottom: 10px; /* Espacio adicional debajo de los labels */
-        }
-
-        .form-control {
-            background-color: #0056b3; /* Fondo azul oscuro para los inputs */
-            color: white; /* Texto blanco en los inputs */
-            border: none; /* Sin borde */
-            margin-bottom: 15px; /* Espacio adicional entre inputs */
-        }
-
-        .form-control::placeholder {
-            color: #e0e0e0; /* Color claro para el placeholder */
-        }
-
-        .btn {
-            margin-top: 10px; /* Separar los botones de los campos de entrada */
-            flex: 1; /* Hacer que los botones ocupen espacio igual */
-        }
-
-        .cancel {
-            background-color: red; /* Color rojo para el botón de anular */
-            color: white; /* Texto blanco */
-            border: none; /* Sin borde */
-            margin-right: 15px; /* Separar el botón de anular del de confirmar */
-        }
-
-        .cancel:hover {
-            background-color: darkred; /* Fondo rojo oscuro al pasar el ratón sobre el botón */
-        }
-
-        .confirm {
-            background-color: green; /* Color verde para el botón de confirmar */
-            color: white; /* Texto blanco */
-            border: none; /* Sin borde */
-        }
-
-        .confirm:hover {
-            background-color: darkgreen; /* Fondo verde oscuro al pasar el ratón sobre el botón */
-        }
-    </style>
+    <link rel="stylesheet" href="./consulta-venta.component.css"> <!-- Archivo CSS externo -->
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="form-container">
             <h1 class="text-center mb-4">Ventas</h1>
             <form>
+                <!-- Selección de Cliente -->
                 <div class="form-group">
-                    <label for="sale-id" class="form-label">ID Venta:</label>
-                    <input type="text" id="sale-id" placeholder="Introduce el ID de la venta" class="form-control">
+                    <label for="client-search" class="form-label">Buscar Cliente:</label>
+                    <input type="text" id="client-search" [(ngModel)]="venta.codCliente" placeholder="Introduce el ID del cliente" name="clientSearch" required class="form-control">
                 </div>
+                
+                <!-- Selección de Producto y Cantidad -->
                 <div class="form-group">
-                    <label for="client-id" class="form-label">ID Cliente:</label>
-                    <input type="text" id="client-id" placeholder="Introduce el ID del cliente" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="product-id" class="form-label">ID Producto:</label>
-                    <input type="text" id="product-id" placeholder="Introduce el ID del producto" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="product-quantity" class="form-label">Cantidad de Producto:</label>
-                    <input type="number" id="product-quantity" placeholder="Introduce la cantidad" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="sale-status" class="form-label">Estatus:</label>
-                    <select id="sale-status" class="form-control">
-                        <option value="entregado">Entregado</option>
-                        <option value="en-proceso">En Proceso</option>
-                        <option value="devolucion">Devolución</option>
+                    <label for="product-select" class="form-label">Producto:</label>
+                    <select id="product-select" [(ngModel)]="selectedProduct" name="productSelect" class="form-select">
+                        <option *ngFor="let producto of productos" [value]="producto.codProducto">{{ producto.descripcion }}</option>
                     </select>
                 </div>
-                <div class="form-group d-flex justify-content-between">
-                    <button type="button" class="btn cancel" onclick="cancelSale()">Anular</button>
-                    <button type="button" class="btn confirm" onclick="confirmSale()">Confirmar</button>
+                
+                <div class="form-group">
+                    <label for="product-quantity" class="form-label">Cantidad de Producto:</label>
+                    <input type="number" id="product-quantity" [(ngModel)]="selectedQuantity" placeholder="Introduce la cantidad" name="productQuantity" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" class="btn btn-add" (click)="agregarDetalleVenta(selectedProduct, selectedQuantity)">Agregar Producto</button>
+                </div>
+                
+                <!-- Lista de Productos Añadidos -->
+                <div class="products-list" id="products-list">
+                    <ul class="list-group">
+                        <li *ngFor="let detalle of detallesVenta" class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ detalle.codProductoNavigation.descripcion }} - <strong>Cantidad:</strong> {{ detalle.cantidad }} - <strong>Subtotal:</strong> {{ detalle.subtotal | currency }}
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Estatus de Venta -->
+                <div class="form-group mt-3">
+                    <label for="sale-status" class="form-label">Estatus:</label>
+                    <select id="sale-status" [(ngModel)]="venta.statusVenta" name="saleStatus" class="form-control">
+                        <option value="0">0 - En Proceso</option>
+                        <option value="1">1 - Entregado</option>
+                    </select>
+                </div>
+                
+                <!-- Botones para Confirmar o Anular la Venta -->
+                <div class="form-group d-flex justify-content-between mt-4">
+                    <button type="button" class="btn cancel" (click)="cancelarVenta()">Anular</button>
+                    <button type="button" class="btn confirm" (click)="confirmarVenta()">Confirmar</button>
+                </div>
+
+                <!-- Mensaje de estado -->
+                <div class="alert alert-info mt-3" role="alert" *ngIf="mensaje">
+                    {{ mensaje }}
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        function confirmSale() {
-            // Lógica para confirmar la venta
-            alert('Venta confirmada.');
-        }
-
-        function cancelSale() {
-            // Lógica para anular la venta
-            alert('Venta anulada.');
-        }
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
