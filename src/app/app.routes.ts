@@ -27,7 +27,7 @@ import {MenuNotacreditoComponent} from './sub-menus/menu-notacredito/menu-notacr
 import {MenuProductosComponent} from './sub-menus/menu-productos/menu-productos.component';
 // ***********************************************************************************************
 //VENTAS
-import {VentasComponent} from './ventas/consulta-venta/consulta-venta.component';
+import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.component';
 // ***********************************************************************************************
 
 
@@ -52,7 +52,7 @@ export const routes: Routes = [
    { path: 'MenuCliente', component: MenuClientesComponent },
    { path: 'MenuNota', component: MenuNotacreditoComponent },
    { path: 'MenuProducto', component: MenuProductosComponent },
-   { path: 'ConsultaVenta', component: VentasComponent },
+   { path: 'ConsultaVenta', component: ConsultaVentaComponent },
    { path: 'Bitacora', component: BitacoraComponent },
    { path: 'IngresoEntrega', component: IngresoEntregaComponent },
    { path: 'SeguimientoEntrega', component: SeguimientoEntregaComponent },

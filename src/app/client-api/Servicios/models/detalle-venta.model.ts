@@ -9,6 +9,6 @@ export interface DetalleVentum {
     subtotal: number;
     status: number;
     codDevolucionProducto?: number;
-    codProductoNavigation?: Producto;
+   // codProductoNavigation?: Producto;
     codVentaNavigation?: Ventum;
   }

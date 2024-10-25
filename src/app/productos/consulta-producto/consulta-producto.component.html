@@ -37,6 +37,7 @@
                     <th>Ubicación Física</th>
                     <th>Existencia</th>
                     <th>Estatus</th>
+                    <th>Precio</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +49,8 @@
                     <td>{{ producto.ubicacionNombre }}</td>
                     <td>{{ producto.existencia }}</td>
                     <td>{{ producto.status === 1 ? 'Activo' : 'Inactivo' }}</td>
+                    <td>{{ producto.precio }}</td>
+                    
                 </tr>
             </tbody>
         </table>

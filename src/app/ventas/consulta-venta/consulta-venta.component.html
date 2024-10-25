@@ -1,72 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./consulta-venta.component.css"> <!-- Archivo CSS externo -->
+    <link rel="stylesheet" href="./consulta-venta.component.css">
 </head>
+
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="form-container">
             <h1 class="text-center mb-4">Ventas</h1>
             <form>
-                <!-- Selección de Cliente -->
                 <div class="form-group">
-                    <label for="client-search" class="form-label">Buscar Cliente:</label>
-                    <input type="text" id="client-search" [(ngModel)]="venta.codCliente" placeholder="Introduce el ID del cliente" name="clientSearch" required class="form-control">
+                    <label for="cliente-select" class="form-label">Seleccionar Cliente:</label>
+                    <select id="cliente-select" [(ngModel)]="venta.codCliente" name="cliente" class="form-control">
+                        <option *ngFor="let cliente of clientes" [value]="cliente.codCliente">{{ cliente.primerNombre }} {{ cliente.primerApellido }}</option>
+                    </select>
                 </div>
-                
-                <!-- Selección de Producto y Cantidad -->
                 <div class="form-group">
                     <label for="product-select" class="form-label">Producto:</label>
-                    <select id="product-select" [(ngModel)]="selectedProduct" name="productSelect" class="form-select">
-                        <option *ngFor="let producto of productos" [value]="producto.codProducto">{{ producto.descripcion }}</option>
+                    <select id="product-select" [(ngModel)]="productoSeleccionado" name="producto" class="form-control">
+                        <option *ngFor="let producto of productos" [ngValue]="producto">{{ producto.descripcion }}</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="product-quantity" class="form-label">Cantidad de Producto:</label>
-                    <input type="number" id="product-quantity" [(ngModel)]="selectedQuantity" placeholder="Introduce la cantidad" name="productQuantity" class="form-control">
+                    <input type="number" id="product-quantity" [(ngModel)]="cantidadProducto" name="cantidad" class="form-control">
                 </div>
-                
                 <div class="form-group">
-                    <button type="button" class="btn btn-add" (click)="agregarDetalleVenta(selectedProduct, selectedQuantity)">Agregar Producto</button>
+                    <button type="button" class="btn btn-add" (click)="agregarProducto()">Agregar Producto</button>
                 </div>
-                
-                <!-- Lista de Productos Añadidos -->
-                <div class="products-list" id="products-list">
-                    <ul class="list-group">
-                        <li *ngFor="let detalle of detallesVenta" class="list-group-item d-flex justify-content-between align-items-center">
-                            {{ detalle.codProductoNavigation.descripcion }} - <strong>Cantidad:</strong> {{ detalle.cantidad }} - <strong>Subtotal:</strong> {{ detalle.subtotal | currency }}
-                        </li>
-                    </ul>
+                <div class="products-list">
+                    <div *ngFor="let detalle of detallesVenta" class="product-item text-white mb-2">
+                        <strong>Cantidad:</strong> {{ detalle.cantidad }} -
+                        <strong>Subtotal:</strong> {{ detalle.subtotal | currency:'USD' }}
+                    </div>
                 </div>
-                
-                <!-- Estatus de Venta -->
-                <div class="form-group mt-3">
-                    <label for="sale-status" class="form-label">Estatus:</label>
-                    <select id="sale-status" [(ngModel)]="venta.statusVenta" name="saleStatus" class="form-control">
-                        <option value="0">0 - En Proceso</option>
-                        <option value="1">1 - Entregado</option>
-                    </select>
+                <div class="form-group">
+                    <label for="total-venta" class="form-label">Total Venta:</label>
+                    <input type="text" id="total-venta" [value]="venta.totalVenta | currency:'USD'" class="form-control" readonly>
                 </div>
-                
-                <!-- Botones para Confirmar o Anular la Venta -->
-                <div class="form-group d-flex justify-content-between mt-4">
-                    <button type="button" class="btn cancel" (click)="cancelarVenta()">Anular</button>
+                <div class="form-group d-flex justify-content-between">
+                    <button type="button" class="btn cancel" (click)="anularVenta()">Anular</button>
                     <button type="button" class="btn confirm" (click)="confirmarVenta()">Confirmar</button>
-                </div>
-
-                <!-- Mensaje de estado -->
-                <div class="alert alert-info mt-3" role="alert" *ngIf="mensaje">
-                    {{ mensaje }}
                 </div>
             </form>
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

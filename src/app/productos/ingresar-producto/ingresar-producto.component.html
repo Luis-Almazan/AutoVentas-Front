@@ -37,6 +37,10 @@
                     <input type="number" id="product-min-stock" name="existencia" class="form-control" placeholder="Introduce la existencia mínima" [(ngModel)]="nuevoProducto.existencia" required>
                 </div>
                 <div class="col-md-6 mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="number" id="precio" name="precio" [(ngModel)]="nuevoProducto.precio" required class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
                     <label for="product-status" class="form-label">Estatus:</label>
                     <select id="product-status" name="status" class="form-select" [(ngModel)]="nuevoProducto.status" required>
                         <option value="1">Activo</option>
