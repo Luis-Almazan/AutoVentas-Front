@@ -23,11 +23,6 @@ import {BajaProductoComponent} from './productos/baja-producto/baja-producto.com
 import {ConsultaProductoComponent} from './productos/consulta-producto/consulta-producto.component';
 import {IngresarProductoComponent} from './productos/ingresar-producto/ingresar-producto.component';
 // ***********************************************************************************************
-//SUB-MENUS
-import {MenuClientesComponent} from './sub-menus/menu-clientes/menu-clientes.component';
-import {MenuNotacreditoComponent} from './sub-menus/menu-notacredito/menu-notacredito.component';
-import {MenuProductosComponent} from './sub-menus/menu-productos/menu-productos.component';
-// ***********************************************************************************************
 //VENTAS
 import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.component';
 // ***********************************************************************************************
@@ -36,7 +31,7 @@ import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.com
 @Component({  
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent,MenuClientesComponent,MenuNotacreditoComponent,MenuProductosComponent],
+  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
