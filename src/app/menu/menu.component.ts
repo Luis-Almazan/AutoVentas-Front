@@ -15,6 +15,7 @@ export class MenuComponent {
   productosVisible = false;
   notasVisible = false;
   paquetesVisible = false; // Controla la visibilidad del submenú de Entrega de Paquetes
+  ventasVisible = false;
 
   toggleClientes() {
     this.clientesVisible = !this.clientesVisible;
@@ -30,5 +31,9 @@ export class MenuComponent {
 
   togglePaquetes() {
     this.paquetesVisible = !this.paquetesVisible; // Alterna la visibilidad del submenú de Entrega de Paquetes
+  }
+
+  toggleVentas() {
+    this.ventasVisible = !this.paquetesVisible; // Alterna la visibilidad del submenú de Entrega de Paquetes
   }
 }

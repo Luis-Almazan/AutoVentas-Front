@@ -23,6 +23,8 @@ import {IngresarProductoComponent} from './productos/ingresar-producto/ingresar-
 // ***********************************************************************************************
 //VENTAS
 import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.component';
+import {IngresoVentaComponent} from './ventas/ingreso-venta/ingreso-venta.component';
+
 // ***********************************************************************************************
 
 
@@ -44,9 +46,10 @@ export const routes: Routes = [
    { path: 'BajaProducto', component: BajaProductoComponent },
    { path: 'ConsultaProducto', component: ConsultaProductoComponent },
    { path: 'IngresoProducto', component: IngresarProductoComponent },
-   { path: 'ConsultaVenta', component: ConsultaVentaComponent },
+   { path: 'IngresoVenta', component: IngresoVentaComponent },
    { path: 'Bitacora', component: BitacoraComponent },
    { path: 'IngresoEntrega', component: IngresoEntregaComponent },
+   { path: 'ConsultaVenta', component: ConsultaVentaComponent },
    { path: 'SeguimientoEntrega', component: SeguimientoEntregaComponent },
 ];
 

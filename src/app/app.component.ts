@@ -25,13 +25,15 @@ import {IngresarProductoComponent} from './productos/ingresar-producto/ingresar-
 // ***********************************************************************************************
 //VENTAS
 import {ConsultaVentaComponent} from './ventas/consulta-venta/consulta-venta.component';
+import {IngresoVentaComponent} from './ventas/ingreso-venta/ingreso-venta.component';
+
 // ***********************************************************************************************
 
 
 @Component({  
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent],
+  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent, IngresoVentaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

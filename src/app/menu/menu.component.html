@@ -1,8 +1,10 @@
 <div class="menu-container">
+     <!-- Menu -->
     <h1 routerLink="/menu" >Auto Ventas</h1>
     <div class="menu-item" (click)="toggleClientes()">
         <i class="fas fa-users"></i> Clientes
     </div>
+     <!-- Clientes -->
     <div *ngIf="clientesVisible" class="sub-menu">
         <div class="sub-menu-item" routerLink="/IngresoCliente">Crear Cliente</div>
         <div class="sub-menu-item" routerLink="/ConsultarCliente">Consultar</div>
@@ -19,9 +21,16 @@
         <div class="sub-menu-item" routerLink="/ActualizarProducto">Actualización</div>
         <div class="sub-menu-item" routerLink="/BajaProducto">Baja de Producto</div>
     </div>
-    <hr />
 
-    <div class="menu-item" routerLink="/ConsultaVenta"><i class="fas fa-shopping-cart"></i> Ventas</div>
+    <hr />
+    <div class="menu-item" (click)="toggleVentas()">
+        <i class="fas fa-box"></i> Ventas
+    </div>
+    <div *ngIf="ventasVisible" class="sub-menu">
+        <div class="sub-menu-item" routerLink="/IngresoVenta">Ingreso Ventas</div>
+        <div class="sub-menu-item" routerLink="/ConsultaVenta">Consulta Ventas</div>
+    </div>
+    <hr />
 
     <!-- Notas de Crédito -->
     <div class="menu-item" (click)="toggleNotas()">
@@ -32,6 +41,8 @@
     <div class="sub-menu-item" routerLink="/DevolucionProducto">Devolución de Producto</div>
     </div>
     <hr />
+
+
 
      <!-- Entrega de Paquetes -->
      <div class="menu-item" (click)="togglePaquetes()">
