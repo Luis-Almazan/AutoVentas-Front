@@ -4,3 +4,10 @@ export * from './Servicios/proveedor.service';
 export * from './Servicios/ubicacion.service';
 export * from './Servicios/detalle-venta.service'
 export * from './Servicios/venta.service'
+export * from './Servicios/AnulacionVenta.service'
+export * from './Servicios/Categoria.service'
+export * from './Servicios/DevolucionProducto.service'
+export * from './Servicios/Encryption.service'
+export * from './Servicios/EntregaPaquete.service'
+export * from './Servicios/NotasCredito.service'
+export * from './Servicios/StatusVenta.service'

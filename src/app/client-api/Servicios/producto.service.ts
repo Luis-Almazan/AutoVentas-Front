@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../enviroments/environment';
-import { ActualizarStatus } from './models/Models';
-import { Producto } from './models/Models';
+import { ActualizarStatus,Producto} from './models/Models';
+import {  } from './models/Models';
 
 @Injectable({
   providedIn: 'root'  // Este servicio será proporcionado en la raíz, disponible en toda la aplicación

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../enviroments/environment';
-import { Ubicacion } from './models/ubicacion.model';  // Importar la interfaz Ubicación
+import { Ubicacion } from './models/Models';  // Importar la interfaz Ubicación
 
 @Injectable({
   providedIn: 'root'  // Este servicio estará disponible en toda la aplicación

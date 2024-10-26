@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../enviroments/environment';
-import { Proveedor } from './models/proveedor.model';  // Importar la interfaz Proveedor
+import { Proveedor } from './models/Models';  // Importar la interfaz Proveedor
 
 @Injectable({
   providedIn: 'root'  // Este servicio estará disponible en toda la aplicación
