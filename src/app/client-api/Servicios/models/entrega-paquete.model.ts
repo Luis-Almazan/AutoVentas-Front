@@ -7,6 +7,7 @@ export interface EntregaPaquete {
     observaciones?: string;
     codCliente: number;
     codVenta: number;
-    clienteNavigation?: Cliente;
-    codVentaNavigation?: Ventum;
+    status: number;
+   // clienteNavigation?: Cliente;
+   // codVentaNavigation?: Ventum;
   }

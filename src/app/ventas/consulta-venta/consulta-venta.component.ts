@@ -1,125 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProductoService, ClienteService, VentaService, DetalleVentaService } from '../../client-api/api'; 
-import { Producto, Cliente, Ventum, DetalleVentum } from '../../client-api/Servicios/models/Models';
+import { Ventum, Cliente } from '../../client-api/Servicios/models/Models'; // Ajustar la ruta según la estructura del proyecto
+import { VentaService, ClienteService } from '../../client-api/api'; // Ajustar la ruta según la estructura del proyecto
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   standalone: true,
-  selector: 'app-ventas',
-  templateUrl: './consulta-venta.component.html',
+  selector: 'app-consulta-venta',
+  templateUrl: './consulta-venta.component.html', 
   styleUrls: ['./consulta-venta.component.css'],
   imports: [CommonModule, FormsModule]
 })
-export class ConsultaVentaComponent {
-  
+export class ConsultaVentaComponent implements OnInit {
+  ventas: Ventum[] = [];
   clientes: Cliente[] = [];
-  productos: Producto[] = [];
-  venta: Ventum = {
-    codVenta: 0,
-    codCliente: 0,
-    fechaVenta: new Date().toISOString().split('T')[0],
-    totalVenta: 0,
-    statusVenta: 1
-  };
-  detallesVenta: DetalleVentum[] = [];
-  productoSeleccionado: Producto | null = null;
-  cantidadProducto: number = 1;
+  ventasConDetalles: any[] = []; // Ventas con detalles del cliente y clasificación por tipo de venta
+  consultaPor: string = '';
+  consultaValor: string | number = '';
 
-  // Diccionario para almacenar descripciones de productos
-  productoDescripciones: { [key: number]: string } = {};
-  constructor(
-    private clienteService: ClienteService,
-    private productoService: ProductoService,
-    private ventumService: VentaService,
-    private detalleVentaService: DetalleVentaService
-  ) {}
+  constructor(private ventasService: VentaService, private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    this.obtenerClientes();
-    this.obtenerProductos();
+    this.obtenerVentasConClientes();
   }
 
-  obtenerClientes(): void {
-    this.clienteService.getClientes().subscribe((clientes: Cliente[]) => {
-      this.clientes = clientes;
+  obtenerVentasConClientes(): void {
+    forkJoin({
+      ventas: this.ventasService.obtenerVentas(),
+      clientes: this.clienteService.getClientes() // Obtener todos los clientes de una sola vez
+    }).subscribe({
+      next: ({ ventas, clientes }) => {
+        this.clientes = clientes;
+
+        // Mapear las ventas con los nombres de los clientes y agregar tipo de venta
+        this.ventasConDetalles = ventas.map(venta => {
+          const cliente = this.clientes.find(c => c.codCliente === venta.codCliente);
+          return {
+            ...venta,
+            clienteNombre: cliente ? `${cliente.primerNombre} ${cliente.primerApellido}` : 'Cliente no encontrado',
+            tipoVenta: venta.totalVenta > 500 ? 'Mayor' : 'Menor'
+          };
+        });
+
+        console.log('Ventas con detalles:', this.ventasConDetalles);
+      },
+      error: (error) => {
+        console.error('Error al obtener datos:', error);
+      }
     });
   }
 
-  obtenerProductos(): void {
-  this.productoService.getProductos().subscribe((productos: Producto[]) => {
-    this.productos = productos;
+  consultarVentas(): void {
+    if (this.consultaPor && this.consultaValor) {
+      const valorConsulta = typeof this.consultaValor === 'string' ? this.consultaValor.trim().toLowerCase() : this.consultaValor;
 
-    // Llenar el diccionario de descripciones de productos
-    productos.forEach(producto => {
-      this.productoDescripciones[producto.codProducto] = producto.descripcion;
-    });
+      this.ventasConDetalles = this.ventasConDetalles.filter((venta: any) => {
+        let resultadoComparacion = false;
 
-    // Depuración: Verificar el diccionario de descripciones
-    //console.log('Diccionario de descripciones de productos:', this.productoDescripciones);
-  });
-}
+        switch (this.consultaPor) {
+          case 'codigo':
+            resultadoComparacion = venta.codVenta.toString() === valorConsulta.toString();
+            break;
+          case 'cliente':
+            resultadoComparacion = venta.clienteNombre.toLowerCase().includes(valorConsulta.toString());
+            break;
+          case 'total':
+            resultadoComparacion = venta.totalVenta.toString() === valorConsulta.toString();
+            break;
+          case 'estatus':
+            // Estado de la venta: 0 - En Proceso, 1 - Entregado, 2 - Cancelado
+            const statusTexto = venta.statusVenta === 0 ? 'en proceso' : venta.statusVenta === 1 ? 'entregado' : 'cancelado';
+            resultadoComparacion = statusTexto === valorConsulta.toString().toLowerCase();
+            break;
+          case 'tipo':
+            resultadoComparacion = venta.tipoVenta.toLowerCase() === valorConsulta.toString().toLowerCase();
+            break;
+          default:
+            resultadoComparacion = false;
+        }
 
-  agregarProducto(): void {
-    if (this.productoSeleccionado && this.cantidadProducto > 0) {
-      const subtotal = this.productoSeleccionado.precio * this.cantidadProducto;
-  
-      const detalle: DetalleVentum = {
-        codVenta: this.venta.codVenta,
-        codProducto: this.productoSeleccionado.codProducto,
-        cantidad: this.cantidadProducto,
-        subtotal: subtotal,
-        status: 1
-      };
-  
-      // Depuración: Verificar los valores de detalle antes de agregar
-      console.log('Agregando detalle:', detalle);
-  
-      this.detallesVenta.push(detalle);
-      this.calcularTotalVenta();
-  
-      // Resetear productoSeleccionado y cantidadProducto después de agregar
-      this.productoSeleccionado = null;
-      this.cantidadProducto = 1;
+        return resultadoComparacion;
+      });
     } else {
-      console.error('Error: Producto o cantidad no válida');
+      this.obtenerVentasConClientes(); // Si no hay filtro, obtenemos todas las ventas con detalles
     }
-  }
-  
-
-  calcularTotalVenta(): void {
-    this.venta.totalVenta = this.detallesVenta.reduce((total, detalle) => total + detalle.subtotal, 0);
-  }
-
-  confirmarVenta(): void {
-    // Guardar la venta primero
-    this.ventumService.crearVenta(this.venta).subscribe((ventaCreada: Ventum) => {
-      // Asignar el codVenta a cada detalle antes de enviarlos al backend
-      this.detallesVenta.forEach(detalle => {
-        detalle.codVenta = ventaCreada.codVenta;
-      });
-  
-      // Enviar todos los detalles en una sola solicitud
-      this.detalleVentaService.crearDetallesVenta(this.detallesVenta).subscribe(() => {
-        console.log('Todos los detalles de venta fueron creados.');
-        alert('Venta y detalles confirmados.');
-      }, (error) => {
-        console.error('Error al crear detalles de venta:', error);
-      });
-    }, (error) => {
-      console.error('Error al crear la venta:', error);
-      alert('Ocurrió un error al confirmar la venta.');
-    });
-  }
-  
-  anularVenta(): void {
-    this.venta = {
-      codVenta: 0,
-      codCliente: 0,
-      fechaVenta: '',
-      totalVenta: 0,
-      statusVenta: 0
-    };
-    this.detallesVenta = [];
   }
 }

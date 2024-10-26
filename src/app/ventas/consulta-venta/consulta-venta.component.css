@@ -1,77 +1,46 @@
 body {
-    background-color: #f8f9fa;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-.form-container {
-    background-color: #001f3d;
-    color: #ffdd00;
+    background-color: #f8f9fa; /* Fondo gris claro para el body */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    margin: 0; /* Sin márgenes */
+  }
+  
+  .form-container {
+    background-color: #001f3d; /* Fondo azul oscuro para el contenedor */
+    color: #ffdd00; /* Texto amarillo */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.form-label {
-    color: white;
-    margin-bottom: 10px;
-}
-
-.form-control,
-.form-select {
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    margin-bottom: 15px;
-}
-
-.form-control::placeholder {
-    color: #e0e0e0;
-}
-
-.btn {
-    margin-top: 10px;
-    flex: 1;
-}
-
-.cancel {
-    background-color: red;
-    color: white;
-    border: none;
-    margin-right: 15px;
-}
-
-.cancel:hover {
-    background-color: darkred;
-}
-
-.confirm {
-    background-color: green;
-    color: white;
-    border: none;
-}
-
-.confirm:hover {
-    background-color: darkgreen;
-}
-
-.btn-add {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    margin-bottom: 15px;
-}
-
-.btn-add:hover {
-    background-color: #0056b3;
-}
-
-.products-list {
-    margin-top: 20px;
-}
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%; /* Ancho completo */
+    max-width: 700px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar el contenedor */
+  }
+  
+  .form-label {
+    color: white; /* Color blanco para los labels */
+    margin-bottom: 10px; /* Espacio adicional debajo de los labels */
+  }
+  
+  .form-control {
+    background-color: #0056b3; /* Fondo azul oscuro para los inputs */
+    color: white; /* Texto blanco en los inputs */
+    border: none; /* Sin borde */
+    margin-bottom: 15px; /* Espacio adicional entre inputs */
+  }
+  
+  .form-control::placeholder {
+    color: #e0e0e0; /* Color claro para el placeholder */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Fondo azul claro para el botón de buscar */
+    color: #ffffff; /* Texto blanco */
+    border: none; /* Sin borde */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Fondo azul oscuro al pasar el ratón sobre el botón */
+  }
+  
