@@ -56,7 +56,7 @@ export class ConsultaVentaComponent {
     });
 
     // Depuración: Verificar el diccionario de descripciones
-    console.log('Diccionario de descripciones de productos:', this.productoDescripciones);
+    //console.log('Diccionario de descripciones de productos:', this.productoDescripciones);
   });
 }
 
@@ -92,23 +92,21 @@ export class ConsultaVentaComponent {
   }
 
   confirmarVenta(): void {
-    // Guardar la venta y luego usar el `codVenta` retornado en la respuesta
+    // Guardar la venta primero
     this.ventumService.crearVenta(this.venta).subscribe((ventaCreada: Ventum) => {
+      // Asignar el codVenta a cada detalle antes de enviarlos al backend
       this.detallesVenta.forEach(detalle => {
-        detalle.codVenta = ventaCreada.codVenta;  // Asignar el codVenta de la venta creada
-      });
-      // Guardar cada detalle de venta ahora que tienen el `codVenta` asignado
-      this.detallesVenta.forEach(detalle => {
-        this.detalleVentaService.crearDetalleVenta(detalle).subscribe(() => {
-          console.log('Detalle de venta creado:', detalle);
-        }, (error) => {
-          console.error('Error al crear detalle de venta:', error);
-        });
+        detalle.codVenta = ventaCreada.codVenta;
       });
   
-      alert('Venta y detalles confirmados.');
+      // Enviar todos los detalles en una sola solicitud
+      this.detalleVentaService.crearDetallesVenta(this.detallesVenta).subscribe(() => {
+        console.log('Todos los detalles de venta fueron creados.');
+        alert('Venta y detalles confirmados.');
+      }, (error) => {
+        console.error('Error al crear detalles de venta:', error);
+      });
     }, (error) => {
-      // Manejo de error en caso de que la creación de la venta falle
       console.error('Error al crear la venta:', error);
       alert('Ocurrió un error al confirmar la venta.');
     });

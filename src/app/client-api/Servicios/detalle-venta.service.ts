@@ -27,6 +27,10 @@ export class DetalleVentaService {
     return this.http.post<DetalleVentum>(`${this.apiUrl}/CrearDetalleVenta`, detalleVenta);
   }
 
+  crearDetallesVenta(detallesVenta: DetalleVentum[]): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/crearDetallesVenta`, detallesVenta);
+  }
+
   // Método PUT - Actualizar un detalle de venta existente
   actualizarDetalleVenta(codDetalleVenta: number, detalleVenta: DetalleVentum): Observable<DetalleVentum> {
     return this.http.put<DetalleVentum>(`${this.apiUrl}/ActualizarDetalleVenta/${codDetalleVenta}`, detalleVenta);
