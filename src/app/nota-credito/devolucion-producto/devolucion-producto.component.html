@@ -1,1 +1,103 @@
-<p>devolucion-producto works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolución de Producto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        /* Estilo general del contenedor */
+        .container {
+            max-width: 600px; /* Ancho máximo del contenedor */
+            margin: 30px auto; /* Centrado vertical y horizontal */
+            padding: 20px; /* Espaciado interno */
+            background-color: #001f3d; /* Fondo oscuro */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        /* Estilo para el título */
+        h2 {
+            margin-bottom: 20px; /* Espacio inferior del título */
+            color: rgb(254, 249, 0); /* Color blanco para el título */
+        }
+
+        /* Estilo para los inputs */
+        input.form-control {
+            border-radius: 4px; /* Bordes redondeados */
+            color: white; /* Color blanco para el texto dentro de los inputs */
+            background-color: #001f3d; /* Fondo azul para los inputs */
+            border: 1px solid #ced4da; /* Borde claro */
+        }
+
+        /* Estilo para los inputs al enfocarse */
+        input.form-control:focus {
+            background-color: #001f3d; /* Mantiene el fondo azul */
+            border-color: #80bdff; /* Color de borde al enfocarse */
+            outline: 0; /* Sin contorno al enfocarse */
+        }
+
+        /* Estilo para los botones */
+        .btn-primary {
+            background-color: #007bff; /* Color de fondo del botón guardar */
+            border-color: #007bff; /* Color del borde del botón */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Color de fondo del botón al pasar el mouse */
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Color de fondo del botón reiniciar */
+            border-color: #6c757d; /* Color del borde del botón */
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Color al pasar el mouse para el botón reiniciar */
+        }
+
+        /* Estilo para los mensajes de error (si los usas) */
+        .error-message {
+            color: #dc3545; /* Color rojo para los mensajes de error */
+            font-size: 0.9em; /* Tamaño de fuente más pequeño */
+            margin-top: 5px; /* Espacio superior */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Devolución de Producto</h2>
+        <form>
+            <!-- Código de Devolución -->
+            <div class="mb-3">
+                <label for="codDevolucion" class="form-label" style="color: white;">Código de Devolución</label>
+                <input type="number" class="form-control" id="codDevolucion" placeholder="Ingrese el código de devolución" required>
+            </div>
+
+            <!-- Código de Nota de Crédito -->
+            <div class="mb-3">
+                <label for="codNotaCredito" class="form-label" style="color: white;">Código de Nota de Crédito</label>
+                <input type="number" class="form-control" id="codNotaCredito" placeholder="Ingrese el código de nota de crédito" required>
+            </div>
+
+            <!-- Cantidad -->
+            <div class="mb-3">
+                <label for="cantidad" class="form-label" style="color: white;">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad" required>
+            </div>
+
+            <!-- Motivo de Devolución (Opcional) -->
+            <div class="mb-3">
+                <label for="motivoDevolucion" class="form-label" style="color: white;">Motivo de Devolución (Opcional)</label>
+                <input type="text" class="form-control" id="motivoDevolucion" placeholder="Ingrese el motivo de devolución">
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="reset" class="btn btn-secondary">Reiniciar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
