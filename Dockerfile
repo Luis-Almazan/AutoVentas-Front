@@ -20,7 +20,7 @@ RUN npm run build --prod
 FROM nginx:alpine AS final
 
 # Copiamos los archivos compilados de Angular al directorio de Nginx
-COPY --from=build /app/dist/tu_nombre_proyecto /usr/share/nginx/html
+COPY --from=build /app/dist/auto-ventas-front/browser /usr/share/nginx/html
 
 # Exponemos el puerto 80
 EXPOSE 80
