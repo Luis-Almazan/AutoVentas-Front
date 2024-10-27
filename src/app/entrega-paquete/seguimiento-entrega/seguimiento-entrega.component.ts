@@ -1,3 +1,4 @@
+import { GoogleMapsModule } from '@angular/google-maps';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,9 +11,12 @@ import { forkJoin } from 'rxjs';
   selector: 'app-bitacora',
   templateUrl: './seguimiento-entrega.component.html',
   styleUrls: ['./seguimiento-entrega.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, GoogleMapsModule]
 })
 export class SeguimientoComponent implements OnInit {
+  
+  mapCenter = { lat: 14.634915, lng: -90.506882 }; // Coordenadas del centro de Guatemala
+  zoomLevel = 12;
   entregas: EntregaPaquete[] = [];
   clientes: Cliente[] = [];
   ventas: Ventum[] = [];

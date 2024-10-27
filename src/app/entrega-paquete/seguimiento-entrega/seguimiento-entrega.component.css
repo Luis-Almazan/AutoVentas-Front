@@ -69,3 +69,19 @@ body {
 .table-bordered th, .table-bordered td {
   border: 1px solid #ddd; /* Borde gris claro para las celdas */
 }
+
+.content-wrapper {
+  display: flex;
+}
+
+.left-panel {
+  width: 300px; /* Ajusta el ancho del panel izquierdo según necesites */
+  margin-right: 20px; /* Espacio entre el panel izquierdo y el mapa */
+}
+
+.map-container {
+  flex: 1;
+  border: 5px solid #000; /* Bordes para el mapa */
+  border-radius: 8px; /* Bordes redondeados opcionales */
+  overflow: hidden;
+}

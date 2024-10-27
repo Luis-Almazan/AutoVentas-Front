@@ -50,6 +50,26 @@
         </tr>
       </tbody>
     </table>
-  </div>
+    <div class="content-wrapper">
+      <div class="left-panel">
+        <!-- Aquí va el formulario de búsqueda y tabla -->
+        <h1 class="text-center mb-4">Bitácora de Entregas</h1>
+        <form (ngSubmit)="consultarEntregas()" #form="ngForm">
+          <!-- contenido del formulario y tabla -->
+        </form>
+      </div>
+    
+      <div class="map-container">
+        <google-map
+          height="100%"
+          width="100%"
+          [center]="mapCenter"
+          [zoom]="zoomLevel"
+        >
+        </google-map>
+      </div>
+      </div>
+    </div>
+
 </body>
 </html>
