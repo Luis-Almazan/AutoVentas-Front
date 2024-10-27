@@ -1,71 +1,82 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { VentaService, ClienteService } from '../../client-api/api';
-import { Ventum, Cliente } from '../../client-api/Servicios/models/Models'; 
-import { Observable, forkJoin } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { EntregaPaqueteService, ClienteService, VentaService } from '../../client-api/api'; // Ajustar rutas según la estructura
+import { Cliente, Ventum, EntregaPaquete } from '../../client-api/Servicios/models/Models';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
-  selector: 'app-ingreso-entrega',
+  selector: 'app-entrega-paquete',
+  imports: [CommonModule, FormsModule],
   templateUrl: './ingreso-entrega.component.html',
-  styleUrls: ['./ingreso-entrega.component.css'],
-  imports: [CommonModule, FormsModule]
+  styleUrls: ['./ingreso-entrega.component.html']
+  
 })
 export class IngresoEntregaComponent implements OnInit {
-  clientes: Cliente[] = [];
-  ventasEnProceso: Ventum[] = [];
-  codCliente: number = 0; // Código de cliente actual, se puede setear cuando el cliente se autentica.
-
   descripcion: string = '';
   observaciones: string = '';
-  clienteSeleccionado: Cliente | undefined;
-  ventaSeleccionada: number = 0;
+  codCliente: number | null = null;
+  codVenta: number | null = null;
   status: number = 1;
+  clientes: Cliente[] = [];
+  ventas: Ventum[] = [];
 
   constructor(
-    private ventasService: VentaService,
-    private clienteService: ClienteService
+    private entregaPaqueteService: EntregaPaqueteService,
+    private clienteService: ClienteService,
+    private ventaService: VentaService
   ) {}
 
   ngOnInit(): void {
-    this.obtenerClientesYVentas();
+    this.obtenerClientes();
+    this.obtenerVentasEnProceso();
   }
 
-  obtenerClientesYVentas(): void {
-    forkJoin({
-      clientes: this.clienteService.getClientes(),
-      ventas: this.ventasService.obtenerVentas()
-    }).subscribe({
-      next: ({ clientes, ventas }) => {
+  obtenerClientes(): void {
+    this.clienteService.getClientes().subscribe({
+      next: (clientes) => {
         this.clientes = clientes;
-
-        // Filtrar las ventas que pertenecen al cliente y que están "En Proceso" (statusVenta === 1)
-        this.ventasEnProceso = ventas.filter(
-          venta => venta.codCliente === this.codCliente && venta.statusVenta === 1
-        );
-
-        // Seleccionar el cliente autenticado (simulado)
-        this.clienteSeleccionado = this.clientes.find(cliente => cliente.codCliente === this.codCliente);
       },
       error: (error) => {
-        console.error('Error al obtener datos:', error);
+        console.error('Error al obtener clientes:', error);
+      }
+    });
+  }
+
+  obtenerVentasEnProceso(): void {
+    this.ventaService.obtenerVentas().subscribe({
+      next: (ventas) => {
+        this.ventas = ventas.filter(venta => venta.statusVenta === 1);
+      },
+      error: (error) => {
+        console.error('Error al obtener ventas en proceso:', error);
       }
     });
   }
 
   guardarEntrega(): void {
-    // Aquí se procesaría la lógica para guardar la entrega de paquetes.
-    const nuevaEntrega = {
-      codEntrega: 0,
-      descripcion: this.descripcion,
-      observaciones: this.observaciones,
-      codCliente: this.codCliente,
-      codVenta: this.ventaSeleccionada,
-      status: this.status
-    };
-    
-    console.log('Datos para crear entrega:', nuevaEntrega);
-    // Llamar al servicio para crear la entrega
+    if (this.codCliente && this.codVenta && this.descripcion) {
+      const nuevaEntrega: EntregaPaquete = {
+        codEntrega: 0, // Este se generará automáticamente
+        descripcion: this.descripcion,
+        observaciones: this.observaciones,
+        codCliente: this.codCliente,
+        codVenta: this.codVenta,
+        status: this.status
+      };
+
+      this.entregaPaqueteService.crearEntrega(nuevaEntrega).subscribe({
+        next: (entrega) => {
+          console.log('Entrega creada exitosamente:', entrega);
+          alert('Entrega creada exitosamente.');
+        },
+        error: (error) => {
+          console.error('Error al crear la entrega:', error);
+        }
+      });
+    } else {
+      alert('Por favor, completa todos los campos obligatorios.');
+    }
   }
 }
