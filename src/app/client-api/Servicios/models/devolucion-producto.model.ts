@@ -6,6 +6,6 @@ export interface DevolucionProducto {
     codNotaCredito: number;
     cantidad: number;
     motivoDevolucion?: string;
-    codNotaCreditoNavigation?: NotasCredito;
+    //codNotaCreditoNavigation?: NotasCredito;
     detalleVenta: DetalleVentum[];
   }

@@ -6,6 +6,6 @@ export interface AnulacionVenta {
     codNotaCredito?: number;
     codVenta: number;
     motivoAnulacion?: string;
-    codNotaCreditoNavigation?: NotasCredito;
-    codVentaNavigation?: Ventum;
+    //codNotaCreditoNavigation?: NotasCredito;
+    //codVentaNavigation?: Ventum;
   }

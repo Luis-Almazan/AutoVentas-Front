@@ -9,7 +9,7 @@ import { DatosClienteComponent } from './clientes/datos-cliente/datos-cliente.co
 // ENTREGA-PAQUETE
 import { BitacoraComponent } from './entrega-paquete/bitacora/bitacora.component';
 import { IngresoEntregaComponent } from './entrega-paquete/ingreso-entrega/ingreso-entrega.component';
-import { SeguimientoEntregaComponent } from './entrega-paquete/seguimiento-entrega/seguimiento-entrega.component';
+import { SeguimientoComponent } from './entrega-paquete/seguimiento-entrega/seguimiento-entrega.component';
 // ***********************************************************************************************
 //NOTA-CREDITO
 import {AnulacionVentasComponent} from './nota-credito/anulacion-ventas/anulacion-ventas.component';
@@ -39,7 +39,7 @@ export const routes: Routes = [
    { path: 'IngresoCliente', component: DatosClienteComponent },
    { path: 'Bitacora', component: BitacoraComponent },
    { path: 'IngresoEntrega', component: IngresoEntregaComponent },
-   { path: 'Seguimiento', component: SeguimientoEntregaComponent },
+   { path: 'Seguimiento', component: SeguimientoComponent },
    { path: 'AnulacionVentas', component: AnulacionVentasComponent },
    { path: 'DevolucionProducto', component: DevolucionProductoComponent },
    { path: 'ActualizarProducto', component: ActualizaProductoComponent },
@@ -50,7 +50,7 @@ export const routes: Routes = [
    { path: 'Bitacora', component: BitacoraComponent },
    { path: 'IngresoEntrega', component: IngresoEntregaComponent },
    { path: 'ConsultaVenta', component: ConsultaVentaComponent },
-   { path: 'SeguimientoEntrega', component: SeguimientoEntregaComponent },
+   { path: 'SeguimientoEntrega', component: SeguimientoComponent },
 ];
 
 export const routing = RouterModule.forRoot(routes);

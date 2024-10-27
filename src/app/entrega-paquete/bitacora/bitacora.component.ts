@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EntregaPaquete, Cliente, Ventum } from '../../client-api/Servicios/models/Models'; // Ajustar la ruta según la estructura del proyecto
-import { EntregaPaqueteService, ClienteService, VentaService } from '../../client-api/api'; // Ajustar la ruta según la estructura del proyecto
-import { forkJoin } from 'rxjs';
+import { BitacoraService } from '../../client-api/api'; // Ajusta la ruta según tu proyecto
+import { Bitacora } from '../../client-api/Servicios/models/Models'; // Ajusta la ruta según tu proyecto
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -13,72 +13,45 @@ import { forkJoin } from 'rxjs';
   imports: [CommonModule, FormsModule]
 })
 export class BitacoraComponent implements OnInit {
-  entregas: EntregaPaquete[] = [];
-  clientes: Cliente[] = [];
-  ventas: Ventum[] = [];
-  entregasConDetalles: any[] = []; // Entregas con detalles del cliente y venta
+  bitacoras: Bitacora[] = [];
   consultaPor: string = '';
-  consultaValor: string | number = '';
+  consultaValor: string = '';
+  bitacorasFiltradas: Bitacora[] = [];
 
-  constructor(
-    private entregaService: EntregaPaqueteService,
-    private clienteService: ClienteService,
-    private ventaService: VentaService
-  ) {}
+  constructor(private bitacoraService: BitacoraService) {}
 
   ngOnInit(): void {
-    this.obtenerEntregasConDetalles();
+    this.obtenerBitacoras();
   }
 
-  obtenerEntregasConDetalles(): void {
-    forkJoin({
-      entregas: this.entregaService.obtenerEntregas(),
-      clientes: this.clienteService.getClientes(),
-      ventas: this.ventaService.obtenerVentas()
-    }).subscribe({
-      next: ({ entregas, clientes, ventas }) => {
-        this.clientes = clientes;
-        this.ventas = ventas;
-
-        // Mapear las entregas con los nombres de los clientes y las ventas asociadas
-        this.entregasConDetalles = entregas.map(entrega => {
-          const cliente = this.clientes.find(c => c.codCliente === entrega.codCliente);
-          const venta = this.ventas.find(v => v.codVenta === entrega.codVenta);
-          return {
-            ...entrega,
-            clienteNombre: cliente ? `${cliente.primerNombre} ${cliente.primerApellido}` : 'Cliente no encontrado',
-            ventaTotal: venta ? venta.totalVenta : 'Venta no encontrada',
-            tipoEntrega: entrega.observaciones ? 'Con Observación' : 'Sin Observación'
-          };
-        });
-
-        console.log('Entregas con detalles:', this.entregasConDetalles);
+  obtenerBitacoras(): void {
+    this.bitacoraService.obtenerBitacoras().subscribe({
+      next: (data: Bitacora[]) => {
+        this.bitacoras = data;
+        this.bitacorasFiltradas = [...this.bitacoras];
       },
       error: (error) => {
-        console.error('Error al obtener datos:', error);
+        console.error('Error al obtener bitácoras:', error);
       }
     });
   }
 
-  consultarEntregas(): void {
+  consultarBitacoras(): void {
     if (this.consultaPor && this.consultaValor) {
-      const valorConsulta = typeof this.consultaValor === 'string' ? this.consultaValor.trim().toLowerCase() : this.consultaValor;
+      const valorConsulta = this.consultaValor.trim().toLowerCase();
 
-      this.entregasConDetalles = this.entregasConDetalles.filter((entrega: any) => {
+      this.bitacorasFiltradas = this.bitacoras.filter((bitacora: Bitacora) => {
         let resultadoComparacion = false;
 
         switch (this.consultaPor) {
-          case 'codigo':
-            resultadoComparacion = entrega.codEntrega.toString() === valorConsulta.toString();
+          case 'tabla':
+            resultadoComparacion = bitacora.tablaNombre.toLowerCase().includes(valorConsulta);
             break;
-          case 'cliente':
-            resultadoComparacion = entrega.clienteNombre.toLowerCase().includes(valorConsulta.toString());
+          case 'operacion':
+            resultadoComparacion = bitacora.operacion.toLowerCase().includes(valorConsulta);
             break;
-          case 'venta':
-            resultadoComparacion = entrega.ventaTotal.toString() === valorConsulta.toString();
-            break;
-          case 'tipo':
-            resultadoComparacion = entrega.tipoEntrega.toLowerCase() === valorConsulta.toString().toLowerCase();
+          case 'usuario':
+            resultadoComparacion = bitacora.usuario.toLowerCase().includes(valorConsulta);
             break;
           default:
             resultadoComparacion = false;
@@ -87,7 +60,7 @@ export class BitacoraComponent implements OnInit {
         return resultadoComparacion;
       });
     } else {
-      this.obtenerEntregasConDetalles(); // Si no hay filtro, obtenemos todas las entregas con detalles
+      this.bitacorasFiltradas = [...this.bitacoras];
     }
   }
 }

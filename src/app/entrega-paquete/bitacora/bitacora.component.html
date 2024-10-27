@@ -8,15 +8,14 @@
 </head>
 <body>
   <div class="form-container container">
-    <h1 class="text-center mb-4">Bitácora de Entregas</h1>
-    <form (ngSubmit)="consultarEntregas()" #form="ngForm">
+    <h1 class="text-center mb-4">Bitácora</h1>
+    <form (ngSubmit)="consultarBitacoras()" #form="ngForm">
       <div class="mb-3">
         <label for="consultaPor" class="form-label">Buscar por:</label>
         <select id="consultaPor" name="consultaPor" class="form-select" required [(ngModel)]="consultaPor" #consultaPorModel="ngModel">
-          <option value="codigo">Código Entrega</option>
-          <option value="cliente">Nombre Cliente</option>
-          <option value="venta">Total de Venta</option>
-          <option value="tipo">Tipo de Entrega (Con Observación/Sin Observación)</option>
+          <option value="tabla">Tabla</option>
+          <option value="operacion">Operación</option>
+          <option value="usuario">Usuario</option>
         </select>
       </div>
       <div class="mb-3">
@@ -30,23 +29,22 @@
     <table class="table table-bordered mt-4">
       <thead>
         <tr>
-          <th>Código Entrega</th>
+          <th>ID Bitácora</th>
+          <th>Tabla Nombre</th>
+          <th>Operación</th>
+          <th>Código Registro</th>
+          <th>Fecha Operación</th>
           <th>Descripción</th>
-          <th>Nombre Cliente</th>
-          <th>Total Venta</th>
-          <th>Observaciones</th>
-          <th>Tipo de Entrega</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entrega of entregasConDetalles">
-          <td>{{ entrega.codEntrega }}</td>
-          <td>{{ entrega.descripcion }}</td>
-          <td>{{ entrega.clienteNombre }}</td>
-          <td>{{ entrega.ventaTotal }}</td>
-          <td>{{ entrega.observaciones ? entrega.observaciones : 'Sin observaciones' }}</td>
-          <td>{{ entrega.tipoEntrega }}</td>
-          <td>{{ entrega.status }}</td>
+        <tr *ngFor="let bitacora of bitacorasFiltradas">
+          <td>{{ bitacora.idBitacora }}</td>
+          <td>{{ bitacora.tablaNombre }}</td>
+          <td>{{ bitacora.operacion }}</td>
+          <td>{{ bitacora.codRegistro }}</td>
+          <td>{{ bitacora.fechaOperacion }}</td>
+          <td>{{ bitacora.descripcion }}</td>
         </tr>
       </tbody>
     </table>

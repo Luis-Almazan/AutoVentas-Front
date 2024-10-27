@@ -11,7 +11,7 @@ import { DatosClienteComponent } from './clientes/datos-cliente/datos-cliente.co
 // ENTREGA-PAQUETE
 import { BitacoraComponent } from './entrega-paquete/bitacora/bitacora.component';
 import { IngresoEntregaComponent } from './entrega-paquete/ingreso-entrega/ingreso-entrega.component';
-import { SeguimientoEntregaComponent } from './entrega-paquete/seguimiento-entrega/seguimiento-entrega.component';
+import { SeguimientoComponent } from './entrega-paquete/seguimiento-entrega/seguimiento-entrega.component';
 // ***********************************************************************************************
 //NOTA-CREDITO
 import {AnulacionVentasComponent} from './nota-credito/anulacion-ventas/anulacion-ventas.component';
@@ -33,7 +33,7 @@ import {IngresoVentaComponent} from './ventas/ingreso-venta/ingreso-venta.compon
 @Component({  
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoEntregaComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent, IngresoVentaComponent],
+  imports: [RouterOutlet,RouterLink,MenuComponent,ActualizarClienteComponent,BajaClienteComponent,ConsultaVentaComponent,DatosClienteComponent,BitacoraComponent,IngresoEntregaComponent,SeguimientoComponent,AnulacionVentasComponent,DevolucionProductoComponent,ActualizaProductoComponent,BajaProductoComponent,ConsultaProductoComponent,IngresarProductoComponent, IngresoVentaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

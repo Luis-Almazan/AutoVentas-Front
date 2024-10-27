@@ -11,9 +11,9 @@ export interface NotasCredito {
     total: number;
     codVenta?: number;
     anulacionVenta?: AnulacionVenta[];
-    clienteNavigation?: Cliente;
-    codVentaNavigation?: Ventum;
-    devolucionProductos: DevolucionProducto[];
+    //clienteNavigation?: Cliente;
+    //codVentaNavigation?: Ventum;
+    devolucionProductos?: DevolucionProducto[];
   }
 
   

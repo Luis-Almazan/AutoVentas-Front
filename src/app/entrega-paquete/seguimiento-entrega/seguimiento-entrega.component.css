@@ -1,0 +1,71 @@
+/* bitacora.component.css */
+
+body {
+  background-color: #f8f9fa; /* Fondo gris claro para el body */
+  height: 100vh; /* Altura completa de la ventana */
+  display: flex; /* Usar flexbox para centrar */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  margin: 0; /* Sin márgenes */
+}
+
+.form-container {
+  background-color: #001f3d; /* Fondo azul para el contenedor */
+  color: #ffdd00; /* Texto amarillo */
+  padding: 20px;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 100%; /* Asegurarse de que ocupa el 100% del ancho */
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el contenedor */
+}
+
+.form-label {
+  color: white; /* Color blanco para los labels */
+}
+
+.form-control, .form-select {
+  background-color: #0056b3; /* Fondo azul oscuro para los inputs */
+  color: white; /* Texto blanco en los inputs */
+  border: none; /* Sin borde */
+  margin-bottom: 15px; /* Espacio adicional entre inputs */
+}
+
+.form-control::placeholder {
+  color: #e0e0e0; /* Color claro para el placeholder */
+}
+
+.btn-primary {
+  background-color: #007bff; /* Fondo azul para el botón de buscar */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Fondo azul oscuro al pasar el ratón sobre el botón */
+}
+
+.table {
+  background-color: white; /* Fondo blanco para la tabla */
+  color: #333; /* Texto gris oscuro */
+}
+
+.table th {
+  background-color: #007bff; /* Fondo azul para los encabezados */
+  color: white; /* Texto blanco en los encabezados */
+  text-align: left; /* Alinear el texto a la izquierda */
+  padding: 10px; /* Espaciado interno */
+}
+
+.table td {
+  padding: 10px; /* Espaciado interno */
+  text-align: left; /* Alinear el texto a la izquierda */
+}
+
+.table-bordered {
+  border: 1px solid #ddd; /* Borde gris claro para la tabla */
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #ddd; /* Borde gris claro para las celdas */
+}
