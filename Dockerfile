@@ -18,6 +18,8 @@ RUN npm run build --prod
 
 # Usamos una imagen ligera de nginx para servir la aplicación
 FROM nginx:alpine AS final
+# Copia la configuración de Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copiamos los archivos compilados de Angular al directorio de Nginx
 COPY --from=build /app/dist/auto-ventas-front/browser /usr/share/nginx/html
